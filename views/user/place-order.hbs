@@ -1,0 +1,78 @@
+
+    <style>
+     
+     body {
+        text-align: center;
+        {{!-- padding: 40px 0;
+        background: #EBF0F5; --}}
+      }
+      
+        h1 {
+          color: #88B04B;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+        p {
+          color: #404F5E;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+        }
+      
+      .card {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+      }
+    </style>
+
+    {{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+    
+      <div class="card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <i class="checkmark" style=" color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;">✓</i>
+      </div>
+        <h1>Success</h1> 
+        <p>We have received your rental request;<br/> 
+        We will touch in shortly <br>
+         Thank You!</p>
+      </div>
+    
+{{#if rent}} 
+
+<div>
+ <a class="btn btn-success m-5 col col col-lg-12" style="width: 15%;" href="/view-order"> Goto Orders</a>
+</div>
+
+{{else}}
+
+<div>
+ <a class="btn btn-success m-5 col col col-lg-12" style="width: 15%;" href="/"> Goto Home</a>
+</div>
+
+{{/if}}
+
+
+

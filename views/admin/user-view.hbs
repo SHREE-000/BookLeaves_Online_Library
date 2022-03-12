@@ -1,0 +1,103 @@
+<div  style="height : 80vmin">
+<div class="w-100 bg-secondary mt-5" style="height: 50px;">
+<h1 class="text-center fw-bold text-white m-5">USERS</h1>
+</div>
+
+<div id="example_wrapper" class="dataTables_wrapper mt-5">
+    {{!-- <div class="dataTables_length" id="example_length"> --}}
+        {{!-- <label>Show <select name="example_length" aria-controls="example" class="">
+            <option value="10">10</option><option value="25">25</option><option value="50">50</option>
+            <option value="100">100</option></select> entries</label></div>
+            <div id="example_filter" class="dataTables_filter">
+                <label>Search:<input type="search" class="" placeholder="" aria-controls="example"></label></div> --}}
+                <table id="example" class="display dataTable" style="width:100%" aria-describedby="example_info">
+        <thead>
+            <tr>
+                
+                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" 
+            rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+            style="width: 120px;">User Name</th>
+            
+            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" 
+            colspan="1" aria-label="Position: activate to sort column ascending" 
+            style="width: 150px;">Email Id</th>
+
+
+            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" 
+            aria-label="Office: activate to sort column ascending"
+             style="width: 150px;">Mobile Number</th>
+
+             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" 
+            aria-label="Office: activate to sort column ascending"
+             style="width: 100px;">State</th>
+
+              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" 
+            colspan="1" aria-label="Position: activate to sort column ascending" 
+            style="width:  65px;">Existing Plan</th>
+             
+             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+              aria-label="Age: activate to sort column ascending" 
+              style="width: 65px;">Status</th>
+
+
+              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+               aria-label="Start date: activate to sort column ascending" 
+               style="width: 100px;">Control Plan</th>
+
+
+               <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" 
+               aria-label="Salary: activate to sort column ascending"
+                style="width: 100px;">Control User</th>
+               
+               </tr>
+        </thead>
+        <tbody>   
+
+            {{#each users}} 
+             
+             
+        <tr class="odd">
+                <td class="sorting_1">{{this.user_name}}</td>
+                <td>{{this.user_email}}</td>
+                <td>{{this.user_number}}</td>
+                <td>{{this.user_state}}</td>
+
+                {{#if this.plan}}
+                <td>{{this.plan}}</td>
+                {{else}}
+                <td>No Plan activated</td>
+                {{/if}}
+                
+                <td>{{this.isActive}}</td>
+
+
+                {{#if this.validity}}
+
+                {{#if this.isActivePlan}}
+                <td><a href="/a-product/user-view/block_plan/{{this._id}}" class="btn btn-danger " style="width: 200px;">Block Plan</a></td>
+                {{else}}
+                <td><a href="/a-product/user-view/unblock_plan/{{this._id}}" class="btn btn-success" style="width: 200px;">UnBlock Plan</a></td>
+                {{/if}}
+                
+                {{else}}
+                <td>No Plan Activated</td>
+                {{/if}}
+
+                {{#if this.isActive}}
+                <td><a href="/a-product/user-view/block_user/{{this._id}}" class="btn btn-danger" style="width: 200px;">Block User</a></td>
+                {{else}}
+                <td><a href="/a-product/user-view/unblock_user/{{this._id}}" class="btn btn-success" style="width: 200px;">UnBlock User</a></td>
+                {{/if}}
+            </tr>
+
+            {{/each}}
+            
+            </tbody>
+        
+    </table>
+    </div>
+    </div>
+   
+
+
+    

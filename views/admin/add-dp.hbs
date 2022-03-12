@@ -1,0 +1,384 @@
+{{!-- <style>
+	/* .image_area {
+		  position: relative;
+		} */
+
+	img {
+		display: block;
+		max-width: 100%;
+	}
+
+	.preview {
+		overflow: hidden;
+		width: 160px;
+		height: 160px;
+		margin: 10px;
+		border: 1px solid red;
+	}
+
+	.modal-lg {
+		max-width: 1000px !important;
+	}
+
+	.overlay {
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		right: 0;
+		background-color: rgba(255, 255, 255, 0.5);
+		overflow: hidden;
+		height: 0;
+		transition: .5s ease;
+		width: 100%;
+	}
+
+	.image_area:hover .overlay {
+		height: 50%;
+		cursor: pointer;
+	}
+
+	.text {
+		color: #333;
+		font-size: 20px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		text-align: center;
+	}
+</style> --}}
+
+<main id="content" class="page-section inner-page-sec-padding-bottom space-db--20">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Checkout Form s-->
+				<div class="checkout-form">
+					<div class="row row-40">
+						<div class="col-12">
+							<h1 class="quick-title">Add New Address</h1>
+							<!-- Slide Down Trigger  -->
+							<div class="checkout-quick-box">
+								<p><i class="far fa-sticky-note"></i>Returning customer? <a href="javascript:"
+										class="slide-trigger" data-target="#quick-login">Click
+										here to login</a></p>
+							</div>
+							<!-- Slide Down Blox ==> Login Box  -->
+							<div class="checkout-slidedown-box" id="quick-login">
+								<form action="https://template.hasthemes.com/pustok/pustok/">
+									<div class="quick-login-form">
+										<p>If you have shopped with us before, please enter your details in the
+											boxes below. If you are a new
+											customer
+											please
+											proceed to the Billing & Shipping section.</p>
+										<div class="form-group">
+											<label for="quick-user">Username or email *</label>
+											<input type="text" placeholder="" id="quick-user">
+										</div>
+										<div class="form-group">
+											<label for="quick-pass">Password *</label>
+											<input type="text" placeholder="" id="quick-pass">
+										</div>
+										<div class="form-group">
+											<div class="d-flex align-items-center flex-wrap">
+												<a href="#" class="btn btn-outlined me-3">Login</a>
+												<div class="d-inline-flex align-items-center">
+													<input type="checkbox" id="accept_terms" class="mb-0 mx-1">
+													<label for="accept_terms" class="mb-0">I’ve read and accept
+														the terms &amp; conditions</label>
+												</div>
+											</div>
+											<p><a href="javascript:" class="pass-lost mt-3">Lost your
+													password?</a></p>
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- Slide Down Trigger  -->
+							{{!-- <div class="checkout-quick-box">
+								<p><i class="far fa-sticky-note"></i>Have a coupon? <a href="javascript:"
+										class="slide-trigger" data-target="#quick-cupon">
+										Click here to enter your code</a></p>
+							</div>
+							<!-- Slide Down Blox ==> Cupon Box -->
+							<div class="checkout-slidedown-box" id="quick-cupon">
+								<form action="https://template.hasthemes.com/pustok/pustok/">
+									<div class="checkout_coupon">
+										<input type="text" class="mb-0" placeholder="Coupon Code">
+										<a href="#" class="btn btn-outlined">Apply coupon</a>
+									</div>
+								</form>
+							</div> --}}
+						</div>
+						<form action="/a-product/add-dp" method="post" onsubmit="return validationaddressplace()"
+							method="POST" enctype="multipart/form-data" id="add-prod">
+							<div class="col-lg-7 mb--20">
+								<!-- Billing Address -->
+								<div id="billing-form" class="mb-40">
+									<h4 class="checkout-title">Add Profile Picture</h4>
+									<div class="row">
+										
+	                       <div class="row">
+											<div id="image-box1" style="width: 300px; height: 300px; display: none;">
+											</div>
+											<div>
+												<button class="btn btn-primary mt-3" type="button"
+													style="display: none;" id="crop-btn1">Done</button>
+											</div>
+
+											
+											
+											<input name="user_zip_code" type="text" id="addDp" placeholder="Zip Code" hidden>
+										
+
+
+											<div class="mt-5 col-md-12">
+												<label for="">PROFILE IMAGE </label>
+												<img src="/admin-dp/{{dp._id}}1.jpeg" alt=""
+													style="width: 100px; height:auto" id="imgview1">
+												<input type="file" name="image1" id="file1" class="form-control"
+													onchange="return fileValidation1()">
+												<p id="image1" class="text text-danger"></p>
+
+											</div>
+										
+
+
+										</div>
+									</div>
+								</div>
+								<button id="confirm-btn1" type="submit" class="btn btn-success"> Add</button>
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+</main>
+
+
+
+<script>
+
+	//Cropper js function
+
+	function fileValidation1() {
+
+		const imagebox = document.getElementById('image-box1')
+		const crop_btn = document.getElementById('crop-btn1')
+		var fileInput = document.getElementById('file1');
+
+		var filePath = fileInput.value;
+		var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+		if (!allowedExtensions.exec(filePath)) {
+			fileInput.value = '';
+			Swal.fire('Upload image only')
+			return false;
+		} else {
+			//Image preview
+			const img_data = fileInput.files[0]
+			const url = URL.createObjectURL(img_data)
+			imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+			const image = document.getElementById('image')
+			document.getElementById('image-box1').style.display = 'block'
+			document.getElementById('crop-btn1').style.display = 'block'
+			document.getElementById('confirm-btn1').style.display = 'none'
+
+			const cropper = new Cropper(image, {
+				autoCropArea: 1,
+				viewMode: 1,
+				scalable: false,
+				zoomable: false,
+				movable: false,
+				aspectRatio: 16 / 19,
+				//  preview: '.preview',
+				minCropBoxWidth: 100,
+				minCropBoxHeight: 100,
+			})
+			crop_btn.addEventListener('click', () => {
+				cropper.getCroppedCanvas().toBlob((blob) => {
+					let fileInputElement = document.getElementById('file1');
+					let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+					let container = new DataTransfer();
+
+					container.items.add(file);
+					const img = container.files[0]
+					var url = URL.createObjectURL(img)
+					fileInputElement.files = container.files;
+					document.getElementById('imgview1').src = url
+					document.getElementById('image-box1').style.display = 'none'
+					document.getElementById('crop-btn1').style.display = 'none'
+					document.getElementById('confirm-btn1').style.display = 'block'
+				}, 'image/webp', 0.5);
+			});
+		}
+	}
+
+</script>
+
+
+{{!-- <script src=" https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script> --}}
+
+<script>
+	function validationaddressplace() {
+		var name = document.getElementById("inputName").value;
+		var brand = document.getElementById("brand").value;
+		var category = document.getElementById("categorys").value;
+		var subcategory = document.getElementById("subcategory").value;
+		var Price = document.getElementById("Price").value;
+		var stock = document.getElementById("inputStock").value;
+		var fabric = document.getElementById("fabric").value;
+		var packof = document.getElementById("inputpackof").value;
+		var color = document.getElementById("color").value;
+		var size = document.getElementById("size").value;
+		var image1 = document.getElementById("file1").value
+
+
+		if (name == "") {
+			document.getElementById("product").innerHTML =
+				"Please enter product name";
+			return false;
+		}
+		if (!isNaN(name)) {
+			document.getElementById("product").innerHTML =
+				" Enter the valid characters";
+			return false;
+		}
+		if (brand == "") {
+			document.getElementById("brandone").innerHTML =
+				" Please  select brand";
+			return false;
+		}
+		if (brand.length <= 2 || brand.length > 20) {
+			document.getElementById("brandone").innerHTML =
+				"Please enter more than 2 characters and shorter than 20 characters";
+			return false;
+		}
+		if (!isNaN(brand)) {
+			document.getElementById("brandone").innerHTML =
+				" Only enter characters";
+			return false;
+		}
+
+		if (category == "") {
+			document.getElementById("categoryone").innerHTML =
+				" Please select the catagory";
+			return false;
+		}
+
+		if (!isNaN(category)) {
+			document.getElementById("categoryone").innerHTML =
+				" Only enter characters";
+			return false;
+		}
+
+
+
+		if (subcategory == "") {
+			document.getElementById("subcategoryone").innerHTML =
+				" Please Enter Subcatagory";
+			return false;
+		}
+		if (!isNaN(subcategory)) {
+			document.getElementById("subcategoryone").innerHTML =
+				" Only enter characters";
+			return false;
+		}
+
+
+		if (Price == "") {
+			document.getElementById("Priceone").innerHTML =
+				" Please Enter price";
+			return false;
+		}
+		if (isNaN(Price)) {
+			document.getElementById("Priceone").innerHTML =
+				" Only enter characters";
+			return false;
+		}
+
+
+		if (stock == "") {
+			document.getElementById("stockone").innerHTML =
+				" Please Enter stock";
+			return false;
+		}
+
+		if (isNaN(stock)) {
+			document.getElementById("stockone").innerHTML =
+				" Only enter characters";
+			return false;
+		}
+
+
+
+		if (fabric == "") {
+			document.getElementById("fabrione").innerHTML =
+				"Please enter  fabric";
+			return false;
+		}
+		if (fabric.length <= 2 || fabric.length > 20) {
+			document.getElementById("fabrione").innerHTML =
+				" The length is to short ";
+			return false;
+		}
+		if (!isNaN(fabric)) {
+			document.getElementById("fabrione").innerHTML =
+				" Enter the valid characters";
+			return false;
+		}
+
+
+		if (packof == "") {
+			document.getElementById("packof").innerHTML =
+				"Please enter pack";
+			return false;
+		}
+		if (isNaN(packof)) {
+			document.getElementById("packof").innerHTML =
+				" Enter the valid characters";
+			return false;
+		}
+
+
+		if (color == "") {
+			document.getElementById("colorone").innerHTML =
+				"Please enter colour";
+			return false;
+		}
+		if (color.length <= 2 || color.length > 20) {
+			document.getElementById("colorone").innerHTML =
+				" The length is to short ";
+			return false;
+		}
+		if (!isNaN(color)) {
+			document.getElementById("colorone").innerHTML =
+				" Enter the valid characters";
+			return false;
+		}
+
+
+		if (size == "") {
+			document.getElementById("sizeone").innerHTML =
+				"Please enter the size";
+			return false;
+		}
+		if (isNaN(size)) {
+			document.getElementById("sizeone").innerHTML =
+				" Enter the valid characters";
+			return false;
+		}
+		if (image1 == "") {
+			document.getElementById("img1").innerHTML =
+				"Please uplod image";
+			return false;
+		}
+
+
+	}
+</script>

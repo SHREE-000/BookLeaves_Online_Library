@@ -1,0 +1,646 @@
+    <div class="site-wrapper mb-5" id="top">
+        <div class="site-header d-none d-lg-block">
+            <div class="header-middle pt--10 pb--10">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 ">
+                            <a href="/" class="site-brand">
+                                <img src="/user/image/logo.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="header-phone ">
+                                <div class="icon">
+                                    <i class="fas fa-headphones-alt"></i>
+                                </div>
+                                <div class="text">
+                                    <p>Free Support 24/7</p>
+                                    <p class="font-weight-bold number">+01-202-555-0181</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="main-navigation flex-lg-right">
+                                <ul class="main-menu menu-right ">
+                                    <li class="menu-item has-children">
+                                        
+                                        {{!-- <a href="javascript:void(0)"> --}}
+                                            <a href="/">
+                                            Home</a>
+                                        {{!-- <ul class="sub-menu"> --}}
+                                            {{!-- <li> <a href="index.html">Home One</a></li>
+                                            <li> <a href="index-2.html">Home Two</a></li>
+                                            <li> <a href="index-3.html">Home Three</a></li>
+                                            <li> <a href="index-4.html">Home Four</a></li>
+                                            <li> <a href="index-5.html">Home Five</a></li> --}}
+                                        {{!-- </ul> --}}
+                                    </li>
+                                    <!-- Shop -->
+
+                                    {{!-- <li class="menu-item has-children mega-menu">
+                                        <a href="javascript:void(0)">shop <i
+                                                class="fas fa-chevron-down dropdown-arrow"></i></a>
+                                        <ul class="sub-menu four-column">
+                                            <li class="cus-col-25">
+                                                <h3 class="menu-title"><a href="javascript:void(0)">Shop Grid </a></h3>
+                                                <ul class="mega-single-block">
+                                                    <li><a href="shop-grid.html">Fullwidth</a></li>
+                                                    <li><a href="shop-grid-left-sidebar.html">left Sidebar</a></li>
+                                                    <li><a href="shop-grid-right-sidebar.html">Right Sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="cus-col-25">
+                                                <h3 class="menu-title"> <a href="javascript:void(0)">Shop List</a></h3>
+                                                <ul class="mega-single-block">
+                                                    <li><a href="shop-list.html">Fullwidth</a></li>
+                                                    <li><a href="shop-list-left-sidebar.html">left Sidebar</a></li>
+                                                    <li><a href="shop-list-right-sidebar.html">Right Sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="cus-col-25">
+                                                <h3 class="menu-title"> <a href="javascript:void(0)">Product Details
+                                                        1</a></h3>
+                                                <ul class="mega-single-block">
+                                                    <li><a href="product-details.html">Product Details Page</a></li>
+                                                    <li><a href="product-details-affiliate.html">Product Details
+                                                            Affiliate</a></li>
+                                                    <li><a href="product-details-group.html">Product Details Group</a>
+                                                    </li>
+                                                    <li><a href="product-details-variable.html">Product Details
+                                                            Variables</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="cus-col-25">
+                                                <h3 class="menu-title"><a href="javascript:void(0)">Product Details
+                                                        2</a></h3>
+                                                <ul class="mega-single-block">
+                                                    <li><a href="product-details-left-thumbnail.html">left Thumbnail</a>
+                                                    </li>
+                                                    <li><a href="product-details-right-thumbnail.html">Right
+                                                            Thumbnail</a></li>
+                                                    <li><a href="product-details-left-gallery.html">Left Gallery</a>
+                                                    </li>
+                                                    <li><a href="product-details-right-gallery.html">Right Gallery</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li> --}}
+
+                                    <!-- Pages -->
+
+                                    <li class="menu-item has-children">
+                                        <a href="javascript:void(0)">
+                                            {{#if user }}
+                                            {{ user.user_name }}
+                                            {{else }}
+                                            Account
+                                            {{/if }}
+                                            <i class="fas fa-chevron-down dropdown-arrow"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="/profile">My Profile</a></li>
+                                            <li><a href="/user-profile">Address</a></li>
+                                            <li><a href="/subscription">Plans</a></li>
+                                            <li><a href="/subscription_order">Current Status</a></li>
+                                            <li><a href="/view-order">My Orders</li>
+                                            <li><a href="/coupon-view">My Coupons</a></li>
+                                            <li><a href="/cart" >Cart</a></li>
+                                            <li><button onclick="rentExceed()" >Checkout</button></li>                                            
+                                            <li><a href="/wishlist">Wishlist</a></li>
+                                            
+                                            {{#if user}}
+                                            <li><a href="/u-logout">Logout</a></li>
+                                            {{else}} 
+                                            <li><a href="/u-login">Login</a></li>
+                                            <li><a href="/u-signup">Register</a></li>
+                                            {{/if}}                                                                                          
+                                            <li><a href="/contact">Contact Us</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="menu-item">
+                                        <a href="/wishlist">Wishlist <i class="fas fa-heart"></i> 
+                                        <span class="text-number" id="wishlist-count">
+                                                {{wishlistCount}}
+                                            </span>
+                                            </a> 
+                                    </li>
+
+                                   
+                                    <li class="menu-item">
+                                        <a href="/contact">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom pb--10">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3">
+                            <nav class="category-nav   ">
+                                <div>
+                                    <a href="javascript:void(0)" class="category-trigger"><i
+                                            class="fa fa-bars"></i>Browse
+                                        categories</a>
+                                    
+                                    <ul class="category-menu">
+                                        {{#each category}}
+                                        <li class="cat-item has-children">
+                                            <a href="#">{{this.category}}</a>
+                                           
+                                            <ul class="sub-menu">
+                                                <li><a href="#">{{this.book_sub_category}}</a></li>
+                                            </ul>   
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                     
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="col-lg-5">
+                            <form action="/searched-contents" method="post">
+                            <div class="header-search-block">
+                                <input type="text" name="search_key_word" placeholder="Search entire store here">
+                                <button type="submit">Search</button>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="main-navigation flex-lg-right">
+                                <div class="cart-widget">
+                                    <div class="login-block">
+                                        {{#if user}}
+                                        <a href="/u-logout" class="font-weight-bold">Logout</a>
+                                        {{else}}
+                                        <a href="/u-login" class="font-weight-bold">Login</a> <br>
+                                        <span>or</span>
+                                        <a href="/u-signup">Register</a>
+                                        {{/if}}
+                                    </div>
+
+                                     {{!-- {{#if user}}
+                                    <div class="cart-block">
+                                        <div class="cart-total">
+                                            <span class="text-number" id="cart-count">
+                                                {{cartCount}}
+                                            </span>
+                                            <span class="text-item">
+                                                Rent Cart
+                                            </span>
+                                            <span class="price">
+                                                ₹{{totalRate}}
+                                                <i class="fas fa-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <div class="cart-dropdown-block">
+                                            <div class=" single-cart-block ">
+                                                <div class="cart-product">
+                                                    <a href="product-details.html" class="/user/user">
+                                                        <img src="/user/user/products/cart-product-1.jpg" alt="">
+                                                    </a>
+
+                                                
+                                                   {{#each oneBook.cartItems}}
+                                                    <div class="content">                                                       
+                                                        <h3 class="title"><a href="/product-details/{{this._id}}">{{this.book_name}}</a>
+                                                        </h3>
+                                                        <p class="price"><span class="qty">1 ×</span> ₹{{../shiprate}}</p>
+                                                        <button class="cross-btn"><i class="fas fa-times"></i></button>
+                                                    </div>
+                                                    {{/each}}
+
+                                                </div>
+                                            </div>
+                                            <div class=" single-cart-block ">
+                                                <div class="btn-block">
+                                                    <a href="/cart" class="btn">View Cart <i
+                                                            class="fas fa-chevron-right"></i></a>
+                                                    <a href="/checkout" class="btn btn--primary">Check Out <i
+                                                            class="fas fa-chevron-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/if}} --}}
+
+                                     {{#if cartCount}}
+                                    <div class="cart-block">
+                                        <div class="cart-total">
+                                            <span class="text-number" id="cart-count">
+                                                {{cartCount}}
+                                            </span>
+                                            <span class="text-item">
+                                                Rent Cart
+                                            </span>
+                                            <span class="price" id="total-rate">
+                                                ₹{{totalRate}}
+                                                <i class="fas fa-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        {{/if}}
+
+                                        {{#if cartCount}}
+
+                                        <div class="cart-dropdown-block">
+                                            <div class=" single-cart-block ">
+                                                <div class="cart-product">
+                                                    <a href="product-details.html" class="/user/user">
+                                                        <img src="/user/user/products/cart-product-1.jpg" alt="">
+                                                    </a>
+
+                                                
+                                                   {{#each oneBook.cartItems}}
+                                                    <div class="content">                                                       
+                                                        <h3 class="title" id="book-name"><a href="/product-details/{{this._id}}">{{this.book_name}}</a>
+                                                        </h3>
+                                                        <p class="price" id="ship-rate"><span class="qty">1 ×</span> ₹{{../shiprate}}</p>
+                                                        <button class="cross-btn"><i class="fas fa-times"></i></button>
+                                                    </div>
+                                                    {{/each}}
+
+                                                </div>
+                                            </div>
+                                            <div class=" single-cart-block ">
+                                                <div class="btn-block">
+                                                    <a href="/cart" class="btn">View Cart <i
+                                                            class="fas fa-chevron-right"></i></a>
+                                                    <button  onclick="rentExceed()" class="btn btn--primary">Check Out <i
+                                                            class="fas fa-chevron-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {{/if}}
+                                    
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-mobile-menu">
+            <header class="mobile-header d-block d-lg-none pt--10 pb-md--10">
+                <div class="container">
+                    <div class="row align-items-sm-end align-items-center">
+                        <div class="col-md-4 col-7">
+                            <a href="/" class="site-brand">
+                                <img src="/user/image/logo.png" alt="">
+                            </a>
+                        </div>
+
+
+
+                        
+                                    {{!-- <a href="javascript:void(0)" class="category-trigger"><i
+                                            class="fa fa-bars"></i>Browse
+                                        categories</a>
+                                    <ul class="category-menuz">
+                                        {{#each category}}
+                                        <li class="cat-item has-children">
+                                            
+                                            <a href="#">{{this.category}} </a>
+                                            <ul class="sub-menu">
+                                                <li><a href="#">{{this.book_sub_category}} </a></li>
+                                            </ul>
+                                           
+                                        </li>
+                                        
+                        <div class="col-md-5 order-3 order-md-2">
+                            <nav class="category-nav   ">
+                                <div>
+
+
+            
+                                        <li class="cat-item has-children"><a href="#">Non - Fiction Paperbacks</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="#">Education</a></li>
+                                                <li><a href="#">History & Politics</a></li>
+                                                <li><a href="#">Autography & Biography</a></li>
+                                                <li><a href="#">General</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="cat-item has-children"><a href="#">Fiction Paperbacks</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="#">Fantacy</a></li>
+                                                <li><a href="#">Horror & Thriller</a></li>
+                                                <li><a href="#">Comic</a></li>
+                                                <li><a href="#">Adventure</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="cat-item has-children"><a href="#">Popular Authors</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="#">Mark Twain</a></li>
+                                                <li><a href="#">Chetan Bhagat</a></li>
+                                                <li><a href="#">Charles Dickens</a></li>
+                                                <li><a href="#">J. K. Rowling</a></li>
+                                            </ul>
+                                        </li>
+                                       
+                                        {{/each}}
+                                    </ul> --}}
+
+
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="col-md-3 col-5  order-md-3 text-right">
+                            <div class="mobile-header-btns header-top-widget">
+    
+                                                                    <ul class="header-links text-center">
+
+                                                                       
+
+                                        {{#if cartCount}}
+                                    <li class="sin-link mx-2">
+                                        <div class="cart-total">
+                                            <span class="text-number" id="cart-count">
+                                                {{cartCount}}
+                                            </span>
+                                            {{!-- <span class="text-item fs-6">
+                                                Rent Cart
+                                            </span> --}}
+                                                <i class="ion-bag"></i>
+                                            <span class="price" id="total-rate">
+                                                ₹{{totalRate}}
+                                            </a>
+                                        </div>
+                                    </li>
+                                        {{/if}}
+
+                                     <li class="menu-item ">
+                                        <a href="/wishlist">Wishlist <i class="fas fa-heart"></i> 
+                                        <span class="text-number" id="wishlist-count">
+                                                {{wishlistCount}}
+                                            </span>
+                                            </a> 
+                                    </li>
+                                                                        <li class="sin-link">
+                                        <a href="javascript:" class="link-icon hamburgur-icon off-canvas-btn"><i
+                                                class="ion-navicon"></i></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!--Off Canvas Navigation Start-->
+            <aside class="off-canvas-wrapper">
+                <div class="btn-close-off-canvas">
+                    <i class="ion-android-close"></i>
+                </div>
+                <div class="off-canvas-inner">
+                    <!-- search box start -->
+                    <div class="search-box offcanvas">
+                        <form>
+                            <input type="text" placeholder="Search Here">
+                            <button class="search-btn"><i class="ion-ios-search-strong"></i></button>
+                        </form>
+                    </div>
+                    <!-- search box end -->
+                    <!-- mobile menu start -->
+
+                    <div class="mobile-navigation">
+                        <!-- mobile menu navigation start -->
+
+                        <form action="/searched-contents" class="mb-3" method="post">
+                            <input type="text" name="search_key_word" placeholder="Search entire store here">
+                            <button type="submit" class="search-btn"><i class="ion-ios-search-strong"></i></button>
+                        </form> 
+
+
+                        <nav class="off-canvas-nav">
+                            <ul class="mobile-menu main-mobile-menu">
+                                <li class="menu-item-has-children">
+                                    <a href="/">Home</a>
+                                </li>
+                                
+                                {{!-- <li class="menu-item-has-children">
+                                    <a href="#">Shop</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Shop Grid</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="shop-grid.html">Fullwidth</a></li>
+                                                <li><a href="shop-grid-left-sidebar.html">left Sidebar</a></li>
+                                                <li><a href="shop-grid-right-sidebar.html">Right Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Shop List</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="shop-list.html">Fullwidth</a></li>
+                                                <li><a href="shop-list-left-sidebar.html">left Sidebar</a></li>
+                                                <li><a href="shop-list-right-sidebar.html">Right Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Product Details 1</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="product-details.html">Product Details Page</a></li>
+                                                <li><a href="product-details-affiliate.html">Product Details
+                                                        Affiliate</a></li>
+                                                <li><a href="product-details-group.html">Product Details Group</a></li>
+                                                <li><a href="product-details-variable.html">Product Details
+                                                        Variables</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Product Details 2</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="product-details-left-thumbnail.html">left Thumbnail</a>
+                                                </li>
+                                                <li><a href="product-details-right-thumbnail.html">Right Thumbnail</a>
+                                                </li>
+                                                <li><a href="product-details-left-gallery.html">Left Gallery</a></li>
+                                                <li><a href="product-details-right-gallery.html">Right Gallery</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li> --}}
+                                <li class="menu-item-has-children">
+                                    {{#if user}}
+                                    {{user.user_name}}
+                                    {{else}}
+                                    <a href="#">Account</a>
+                                    {{/if}}
+                                    <ul class="sub-menu">
+                                        
+                                        <li><a href="/profile">My Profile</a></li>
+                                            <li><a href="/user-profile">Address</a></li>
+                                            <li><a href="/subscription">Plans</a></li>
+                                            <li><a href="/subscription_order">Current Status</a></li>
+                                            <li><a href="/view-order">My Orders</li>
+                                            <li><a href="/coupon-view">My Coupons</a></li>
+                                            <li><a href="/cart">Cart</a></li>
+                                            <li><button  onclick="rentExceed()">Checkout</button></li>                                            
+                                        <li><a href="wishlist">Wishlist <i class="fas fa-heart"></i></a></li>
+                                        {{#if user}}
+                                        <li><a href="/u-logout">Logout</a></li>
+                                        {{else}}
+                                        <li><a href="/u-login">Login</a></li> 
+                                        <li><a href="/u-signup">Register</a></li>  
+                                        {{/if}}                                        
+                                        <li><a href="/contact">Contact Us</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                        </nav>
+
+                        
+                        <!-- mobile menu navigation end -->
+                    </div>
+                    <!-- mobile menu end -->
+                    <nav class="off-canvas-nav">
+                        <ul class="mobile-menu menu-block-2">
+                            <li class="menu-item-has-children">
+                                <a href="#">Currency - INR ₹ <i class="fas fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li> <a href="#">INR ₹</a></li>
+                                    {{!-- <li> <button  onclick="rentExceed()">EUR €</button></li> --}}
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="#">Lang - Eng<i class="fas fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li>Eng</li>
+                                    {{!-- <li>Ban</li> --}}
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="#">My Account <i class="fas fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="/user-profile">My Profile</a></li>
+                                    <li><a href="/user-profile">Address</a></li>
+                                    <li><a href="/subscription_order">Current Status</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="off-canvas-bottom">
+                        <div class="contact-list mb--10">
+                            <a href="#" class="sin-contact"><i class="fas fa-mobile-alt"></i>+91 8075871460</a>
+                            <a href="#" class="sin-contact"><i class="fas fa-envelope"></i>bookleaves@gmail.com</a>
+                        </div>
+                        <div class="off-canvas-social">
+                            <a href="#" class="single-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="single-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="single-icon"><i class="fas fa-rss"></i></a>
+                            <a href="#" class="single-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="single-icon"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#" class="single-icon"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <!--Off Canvas Navigation End-->
+        </div>
+        <div class="sticky-init fixed-header common-sticky">
+            <div class="container d-none d-lg-block">
+                <div class="row align-items-center">
+                    <div class="col-lg-4">
+                        <a href="/" class="site-brand">
+                            <img src="/user/image/logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="main-navigation flex-lg-right">
+                            <ul class="main-menu menu-right ">
+                                <li class="menu-item has-children">
+                                            <a href="javascript:void(0)">Home
+                                        {{!-- <iclass="fas fa-chevron-down dropdown-arrow"></i> --}}
+                                            </a>
+                                    
+                                </li>
+                                <!-- Shop -->
+                                <li class="menu-item has-children mega-menu">
+                                    <a href="javascript:void(0)">shop <i
+                                            class="fas fa-chevron-down dropdown-arrow"></i></a>
+                                    <ul class="sub-menu four-column">
+                                        <li class="cus-col-25">
+                                            <h3 class="menu-title"><a href="javascript:void(0)">Shop Grid </a></h3>
+                                            <ul class="mega-single-block">
+                                                <li><a href="shop-grid.html">Fullwidth</a></li>
+                                                <li><a href="shop-grid-left-sidebar.html">left Sidebar</a></li>
+                                                <li><a href="shop-grid-right-sidebar.html">Right Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="cus-col-25">
+                                            <h3 class="menu-title"> <a href="javascript:void(0)">Shop List</a></h3>
+                                            <ul class="mega-single-block">
+                                                <li><a href="shop-list.html">Fullwidth</a></li>
+                                                <li><a href="shop-list-left-sidebar.html">left Sidebar</a></li>
+                                                <li><a href="shop-list-right-sidebar.html">Right Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="cus-col-25">
+                                            <h3 class="menu-title"> <a href="javascript:void(0)">Product Details 1</a>
+                                            </h3>
+                                            <ul class="mega-single-block">
+                                                <li><a href="product-details.html">Product Details Page</a></li>
+                                                <li><a href="product-details-affiliate.html">Product Details
+                                                        Affiliate</a></li>
+                                                <li><a href="product-details-group.html">Product Details Group</a></li>
+                                                <li><a href="product-details-variable.html">Product Details
+                                                        Variables</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="cus-col-25">
+                                            <h3 class="menu-title"><a href="javascript:void(0)">Product Details 2</a>
+                                            </h3>
+                                            <ul class="mega-single-block">
+                                                <li><a href="product-details-left-thumbnail.html">left Thumbnail</a>
+                                                </li>
+                                                <li><a href="product-details-right-thumbnail.html">Right Thumbnail</a>
+                                                </li>
+                                                <li><a href="product-details-left-gallery.html">Left Gallery</a></li>
+                                                <li><a href="product-details-right-gallery.html">Right Gallery</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Pages -->
+                                <li class="menu-item has-children">
+                                    {{#if user}}
+                                    {{user.user_name}}
+                                    {{else}}
+                                    <a href="javascript:void(0)">Account <i
+                                            class="fas fa-chevron-down dropdown-arrow"></i></a>
+                                            {{/if}}
+                                    <ul class="sub-menu">
+                                        <li><a href="/profile">My Profile</a></li>
+                                            <li><a href="/user-profile">Address</a></li>
+                                            <li><a href="/subscription">Plans</a></li>
+                                            <li><a href="/subscription_order">Current Status</a></li>
+                                            <li><a href="/view-order">My Orders</li>
+                                            <li><a href="/coupon-view">My Coupons</a></li>
+                                            <li><a href="/cart">Cart</a></li>
+                                            <li><button  onclick="rentExceed()">Checkout</button></li>                                            
+                                            <li><a href="wishlist">Wishlist</a></li>
+                                        {{#if user}}
+                                        <li><a href="/logout">Logout</a></li>
+                                        {{else}}
+                                        <li><a href="/u-login">Login</a></li>
+                                        <li><a href="/u-signup">Register</a></li>
+                                        {{/if}}
+                                        <li><a href="/contact">Contact Us</a></li>
+                                    </ul>
+                                </li>
+                               
+                                <li class="menu-item">
+                                    <a href="/contact">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

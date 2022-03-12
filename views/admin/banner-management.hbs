@@ -1,0 +1,100 @@
+
+<section class="login">
+<div class="container d-flex align-items-center justify-content-center mt-5 mb-5" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+<form class="m-5" id="" method="post" action="/a-product/banner-management">
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+  
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark">Write First Banner Heading</label>
+    <input type="text" name="first_banner_heading" class="form-control" id="exampleInputPassword">
+  </div>
+  
+   <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark">Write First Banner Body</label>
+    <input type="text" name="first_banner_body" class="form-control" id="exampleInputPassword">
+  </div>
+
+  <button type="submit" onclick="()" class="btn btn-dark">Add</button>
+
+  </form>
+
+</div>
+</section>
+
+
+<section class="login">
+<div class="container d-flex align-items-center justify-content-center mt-5 mb-5" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+<form class="m-5" id="" method="post" action="/a-product/banner-management/firstDelete">
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+  
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark">Delete Banner Heading</label>
+  </div>
+
+  
+                    <label for="category">First Banner Heading</label>
+                    <select name="first_banner_heading" id="subcategorys" class="custom-select p-2">
+                      <option value="" selected>Choose a Banner Heading</option>
+                      <p id="categoryone" class="text text-danger"></p>
+                       {{#each firstBannerDetails}}
+                      <option class="text-dark" value="{{this.first_banner_heading}}">{{this.first_banner_heading}}</option>
+                      {{/each}}
+                       <p id="categoryone" class="text text-danger"></p>
+                    </select>
+
+                     
+                      {{!-- <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark">Delete Banner Body</label>
+  </div>
+
+  
+                    <label for="category">First Banner First Banner Body</label>
+                    <select name="first_banner_body" id="subcategorys" class="custom-select p-2">
+                      <option value="" selected>Choose a Banner Body</option>
+                      <p id="categoryone" class="text text-danger"></p>
+                      {{#each firstBannerDetails}}
+                      <option class="text-dark" value="{{this.first_banner_body}}">{{this.first_banner_body}}</option>
+                      {{/each}}
+                       <p id="categoryone" class="text text-danger"></p>
+                    </select> --}}
+                 
+  
+
+  <button type="submit" onclick="()" class=" m-5 btn btn-danger">Delete</button>
+
+  </form>
+
+</div>
+</section>

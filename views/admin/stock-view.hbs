@@ -1,0 +1,77 @@
+<div class="w-100 bg-secondary mt-5" style="height: 50px;">
+<h1 class="text-center fw-bold text-white m-5">STOCKS</h1>
+</div>
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                <form action="/a-product/stock-view" method="post">
+
+    <div class="row d-flex justify-content-center ml-5 mt-5 mb-5">
+        <div class="col-md-3 text-center">
+            <label for="">Start date</label>
+            <input type="date" class="border form-control text-center" name="startdate" id="startdate">
+        </div>
+        <div class="col-md-3 text-center">
+            <label for="">End date</label>
+            <input type="date" class="border form-control text-center" name="enddate" id="enddate">
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </div>
+
+</form>
+
+
+<table id="tblData" class="table table-striped table-bordered mt-5 text-wrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Book Id</th>
+                <th>Book Name</th>
+                <th>Category</th>
+                <th>Stock In Hand</th>
+                <th>Stock In Rented</th>
+                <th>Current Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+                {{#each book}}
+            <tr>
+                <td>{{this._id}}</td>
+                <td>{{this.book_name}}</td>
+                <td>{{this.book_sub_category}}</td>
+                <td id="totalCount">{{this.number_of_books}}</td>
+                {{#if no_of_rented_books}}
+                <td id="rentCount">{{this.no_of_rented_books}}</td>
+                {{else}}
+                <td id="rentCount">No Book Is Rented Yet</td>
+                {{/if}}
+                 {{#if this.no_of_rented_books}} 
+                <td id="currentCount"></td> 
+                {{else}}
+                <td>{{this.number_of_books}}</td>
+                {{/if}} 
+                
+            </tr>
+                {{/each}}
+        </tfoot>
+    </table>
+
+    <div class="text-center mt-5">
+        <button type="submit" onclick="exportTableToExcel('tblData')" id="myTable" class="btn btn-warning">Download As Excel</button>
+        <button type="submit"  id="data-print" onclick="return print()" class="btn btn-info">Download As PDF</button>
+    </div>

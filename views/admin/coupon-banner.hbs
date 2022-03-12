@@ -1,0 +1,97 @@
+
+<section class="login">
+<div class="container d-flex align-items-center justify-content-center mt-5 mb-5" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+<form class="m-5" id="" method="post" action="/a-product/coupon-banner">
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+  
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark">Write Coupon Banner Body</label>
+    <input type="text" name="coupon_banner" class="form-control" id="exampleInputPassword">
+  </div>
+  
+   
+
+  <button type="submit" onclick="()" class="btn btn-dark">Add</button>
+
+  </form>
+
+</div>
+</section>
+
+
+<section class="login">
+<div class="container d-flex align-items-center justify-content-center mt-5 mb-5" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+<form class="m-5" id="" method="get" action="/a-product/delete-coupon-banner/{{couponBannerDetails._id}}">
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+  
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark">Delete Coupon Banner </label>
+  </div>
+
+  
+                    <label for="category">Coupon Banners</label>
+                    <select name="coupon_banner" id="subcategorys" class="custom-select p-2">
+                      <option value="" selected>Choose a Coupon Banner</option>
+                      <p id="categoryone" class="text text-danger"></p>
+                       {{#each couponBannerDetails}}
+                      <option class="text-dark" value="{{this.coupon_banner}}">{{this.coupon_banner}}</option>
+                      {{/each}}
+                       <p id="categoryone" class="text text-danger"></p>
+                    </select>
+
+                     
+                      {{!-- <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark">Delete Banner Body</label>
+  </div>
+
+  
+                    <label for="category">First Banner First Banner Body</label>
+                    <select name="first_banner_body" id="subcategorys" class="custom-select p-2">
+                      <option value="" selected>Choose a Banner Body</option>
+                      <p id="categoryone" class="text text-danger"></p>
+                      {{#each firstBannerDetails}}
+                      <option class="text-dark" value="{{this.first_banner_body}}">{{this.first_banner_body}}</option>
+                      {{/each}}
+                       <p id="categoryone" class="text text-danger"></p>
+                    </select> --}}
+                 
+  
+
+   <a href="/a-product/delete-coupon-banner/{{couponBannerDetails.[0]._id}}" class="btn btn-danger" onclick="return confirm('Data (Coupon-Banner) will delete permanently, are you sure ?')" >Delete </a>
+
+  </form>
+
+</div>
+</section>

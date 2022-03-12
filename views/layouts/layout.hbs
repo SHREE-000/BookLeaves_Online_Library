@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Pustok - Book Store HTML Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Use Minified Plugins Version For Fast Page Load -->
+
+	{{!--
+	<link rel="stylesheet" type="text/css" media="screen" href="css/plugins.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../../user/image/favicon.ico"> --}}
+
+
+	<title>{{title}}</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Use Minified Plugins Version For Fast Page Load -->
+
+
+
+
+	{{!-- // ----- CSS FILES ------ // --}}
+	<link
+		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet">
+
+	
+
+	<!-- Custom styles for this template-->
+	<link href="/admin/a_css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+	<!-- Custom styles for this template-->
+	{{!-- <link href="/user/css/sb-admin-2.min.css" rel="stylesheet"> --}}
+	<link rel="stylesheet" type="text/css" media="screen" href="/user/css/plugins.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/user/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/general.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="/user/image/favicon.ico">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+	{{!-- for croper js --}}
+
+	<link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+	<link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
+
+
+	{{!-- Newly Added Files --}}
+
+    <script src="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css"></script>
+
+	
+
+
+
+
+</head>
+
+<body>
+
+	{{#if user_partial}}
+	{{>user-header}}
+	{{{body}}}
+	{{>user-footer}}
+	{{/if}}
+	{{#if admin_partial}}
+	{{>admin-header}}
+	{{{body}}}
+	{{>admin-footer}}
+	{{/if}}
+	{{#if errorPartial}}
+	{{{body}}}
+	{{/if}}
+
+
+
+
+ 
+
+
+
+	{{!-- ----- JS FILES ----- --}}
+	 <script src="/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+
+	<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+	</style>
+	<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+	
+
+	{{!-- new added file --}}
+
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"></script>  
+
+		<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+		<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+{{!-- issued file --}}
+
+	<!-- Core plugin JavaScript-->
+
+	<script src="/user/js/plugins.js"></script>
+
+	<script src="https://unpkg.com/dropzone"></script>
+	<script src="https://unpkg.com/cropperjs"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
+	
+	
+	<script src="/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="/admin/a_js/sb-admin-2.min.js"></script>
+
+	<!-- Page level plugins -->
+	<script src="/admin/vendor/chart.js/Chart.min.js"></script>
+	<!-- Page level custom s../cripts -->
+	<script src="/admin/a_js/demo/chart-area-demo.js"></script>
+	<script src="/admin/a_js/demo/chart-pie-demo.js"></script>
+	<script src="/user/js/ajax-mail.js"></script>
+	<script src="/user/js/custom.js"></script>
+	<script src="/js/formValidation.js"></script>
+	<script src="/js/myOwn.js"></script>
+
+
+</body>
+
+</html>

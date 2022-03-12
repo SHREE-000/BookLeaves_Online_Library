@@ -1,0 +1,430 @@
+<style>
+  /* .image_area {
+		  position: relative;
+		} */
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .preview {
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    margin: 10px;
+    border: 1px solid red;
+  }
+
+  .modal-lg {
+    max-width: 1000px !important;
+  }
+
+  .overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    height: 0;
+    transition: .5s ease;
+    width: 100%;
+  }
+
+  .image_area:hover .overlay {
+    height: 50%;
+    cursor: pointer;
+  }
+
+  .text {
+    color: #333;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+</style>
+
+<section class="container-scroller">
+
+
+  <div class="container-fluid page-body-wrapper">
+
+
+   
+     <div class="container pt-5">
+            <div class="d-flex mt-5 justify-content-center">
+
+    <div class="col-lg-8 mt-5 rounded-2 shadow-lg grid-margin stretch-card" style="border-radius: 25px !important;">
+      <div class="contents order-2 order-md-1">
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-md-12">
+              <div class="text-center mb-5 mt-5">
+                <h3><strong> Add New Book </strong></h3>
+              </div>
+              <form action="/a-product/add-product" onsubmit="return validationAddProduct()" method="POST" enctype="multipart/form-data" 
+                style="padding-top: 40px;" id="add-prod">
+                
+                {{!-- {{#if productExist}}
+                <div class="alert alert-danger" role="alert">
+                  This product is already exist!
+                </div>
+                {{/if}} --}}
+
+                <div class="form-row">  
+
+                  <div class="form-group col-md-6">                  
+                    <label for="inputName">Book Name</label>
+                    <input type="text" class="form-control" id="bookName" name="book_name" value="{{book.book_name}}" placeholder="Product name">
+                     <p id="bookNamError" class="text text-danger w-100 fs-6 fw-light"></p>
+                  </div>
+
+                   <div class="form-group col-md-6">                  
+                    <label for="inputName">Number of Books</label>
+                    <input type="number" class="form-control" id="book_number" name="number_of_books" value="{{book.number_of_books}}" placeholder="Product name">
+                      <p id="bookNumError" class="text text-danger w-100 fs-6 fw-light"></p>
+                  </div>
+
+                </div>
+
+                <div class="form-row">  
+
+                  <div class="form-group col-md-6">                  
+                    <label for="inputName">Author Name</label>
+                    <input type="text" class="form-control" id="inputName" name="book_author" value="{{book.book_author}}" placeholder="Product name">
+                     <p id="product" class="text text-danger"></p>
+                  </div>
+
+                   <div class="form-group col-md-6">                  
+                    <label for="inputName">Language</label>
+                    <input type="text" class="form-control" id="inputName" name="book_language" value="{{book.book_language}}" placeholder="Product name">
+                     <p id="product" class="text text-danger"></p>
+                  </div>
+
+                </div>
+
+                <div class="form-row">
+
+                  <div class="form-group col-md-6">
+                    <label for="category">Category</label>
+                    <select name="book_category" id="categorys" size="1" onchange="getSubCatogory(this.value)" class="custom-select p-2">
+                      <option value="" disabled selected>Category</option>
+                      <p id="categoryone" class="text text-danger"></p>
+                      {{#each category}}
+                      <option  value="{{this.category}}">{{this.category}}</option>
+                      {{/each}}
+                       <p id="categoryone" class="text text-danger"></p>
+                    </select>
+
+                    {{#if catErrPro}}
+                    <p class="text-center text-danger">{{catErrPro}}</p>
+                    {{/if}}
+                  </div>
+
+                  
+                   <div class="form-group col-md-6">
+                    <label for="category">Sub Category</label>
+                    <select name="book_sub_category" id="subcategorys" size="1" class="custom-select p-2">
+                      <option value=""disabled selected>Sub Category</option>
+                       <p id="categoryone" class="text text-danger"></p>
+                    </select>
+
+                    {{#if catErrPro}}
+                    <p class="text-center text-danger">{{catErrPro}}</p>
+                    {{/if}}
+                  </div>
+
+                </div>
+
+                <div class="form-row mt-5">
+
+    <label for="exampleFormControlTextarea1">Book Description</label>
+    <textarea class="form-control" name="book_description" value="{{book.book_description}}" id="description" placeholder="Enter book description" rows="3"></textarea>
+ 
+  </div>
+                
+<div class="form-check form-switch mt-5 mb-5">
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="book_checkPremium" value="Premium">
+  <label class="form-check-label" for="flexSwitchCheckDefault">Premium</label>
+</div>
+                <div class="row">
+                  <div id="image-box1" style="width: 300px; height: 300px; display: none;">
+                  </div>
+                  <div>
+                    <button class="btn btn-primary mt-3" type="button" style="display: none;"
+                      id="crop-btn1">Done</button>
+                  </div>
+                  <div class="mt-5 col-md-6">
+                    <label for="">IMAGE 1</label>
+                    <img src="/book-images/{{book._id}}1.jpeg" alt="" style="width: 100px; height:auto" id="imgview1">
+                    <input type="file" name="image1" id="file1" class="form-control"
+                      onchange="return fileValidation1()">
+                      <p id="bookPicError1" class="text text-danger w-100 fs-6 fw-light"></p>
+     
+                  </div>
+                  <div class="mt-5 col-md-6">
+                    <label for="">IMAGE 2</label>
+                    <img src="/book-images/{{book._id}}2.jpeg" alt="" style="width: 100px; height:auto" id="imgview2">
+                    <input type="file" name="image2" id="file2" class="form-control"
+                      onchange="return fileValidation2()">
+                      <p id="bookPicError2" class="text text-danger w-100 fs-6 fw-light"></p>
+                
+                  </div>
+                  <div class="mt-5 col-md-6">
+                    <label for="">IMAGE 3</label>
+                    <img src="/book-images/{{book._id}}3.jpeg" alt="" style="width: 100px; height:auto" id="imgview3">
+                    <input type="file" name="image3" id="file3" class="form-control"
+                      onchange="return fileValidation3()">
+                      <p id="bookPicError3" class="text text-danger w-100 fs-6 fw-light"></p>
+
+                  </div>
+                  <div class="mt-5 col-md-6">
+                    <label for="">IMAGE 4</label>
+                    <img src="/book-images/{{book._id}}4.jpeg" alt="" style="width: 100px; height:auto" id="imgview4">
+                    <input type="file" name="image4" id="file4" class="form-control"
+                      onchange="return fileValidation4()">
+                   <p id="bookPicError4" class="text text-danger w-100 fs-6 fw-light"></p>
+                  </div>
+
+                </div>
+
+                <center>
+                  <button id="confirm-btn1" type="submit" class="btn btn-primary mt-5 mb-5">Add
+                    New Book</button><br>
+                </center>
+
+                <p class="text-danger text-center" style="display: none;" id="errMsg">Only Image is
+                  Accepted</p>
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+       </div>
+    </div>
+  </div>
+</section>
+
+<script>
+
+
+  //Cropper js function
+
+  function fileValidation1() {
+  
+    const imagebox = document.getElementById('image-box1')
+    const crop_btn = document.getElementById('crop-btn1')
+    var fileInput = document.getElementById('file1');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      fileInput.value = '';
+      Swal.fire('Upload image only') 
+      return false;
+    } else {
+      //Image preview
+      const img_data = fileInput.files[0]
+      const url = URL.createObjectURL(img_data)
+      imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;" >`
+      const image = document.getElementById('image')
+      document.getElementById('image-box1').style.display = 'block'
+      document.getElementById('crop-btn1').style.display = 'block'
+      document.getElementById('confirm-btn1').style.display = 'none'
+
+      const cropper = new Cropper(image, {
+        autoCropArea: 1,
+        viewMode: 1,
+        scalable: false,
+        zoomable: false,
+        movable: false,
+        aspectRatio: 62 / 100,
+        //  preview: '.preview',
+        minCropBoxWidth: 100,
+        minCropBoxHeight: 100,
+        
+      })
+      crop_btn.addEventListener('click', () => {
+        cropper.getCroppedCanvas().toBlob((blob) => {
+          let fileInputElement = document.getElementById('file1');
+          let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+          let container = new DataTransfer();
+
+          container.items.add(file);
+          const img = container.files[0]
+          var url = URL.createObjectURL(img)
+          fileInputElement.files = container.files;
+          document.getElementById('imgview1').src = url
+          document.getElementById('image-box1').style.display = 'none'
+          document.getElementById('crop-btn1').style.display = 'none'
+          document.getElementById('confirm-btn1').style.display = 'block'
+        }, 'image/webp', 0.5);
+      });
+    }
+  }
+  function fileValidation2() {
+    const imagebox = document.getElementById('image-box1')
+    const crop_btn = document.getElementById('crop-btn1')
+    var fileInput = document.getElementById('file2');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      Swal.fire('Upload image only')
+      fileInput.value = '';
+      return false;
+    } else {
+      //Image preview
+      const img_data = fileInput.files[0]
+      const url = URL.createObjectURL(img_data)
+      imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+      const image = document.getElementById('image')
+      document.getElementById('image-box1').style.display = 'block'
+      document.getElementById('crop-btn1').style.display = 'block'
+      document.getElementById('confirm-btn1').style.display = 'none'
+
+      const cropper = new Cropper(image, {
+        autoCropArea: 1,
+        viewMode: 1,
+        scalable: false,
+        zoomable: false,
+        movable: false,
+        aspectRatio: 62 / 100,
+        //  preview: '.preview',
+        minCropBoxWidth: 180,
+        minCropBoxHeight: 240,
+      })
+      crop_btn.addEventListener('click', () => {
+        cropper.getCroppedCanvas().toBlob((blob) => {
+          let fileInputElement = document.getElementById('file2');
+          let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+          let container = new DataTransfer();
+
+          container.items.add(file);
+          const img = container.files[0]
+          var url = URL.createObjectURL(img)
+          fileInputElement.files = container.files;
+          document.getElementById('imgview2').src = url
+          document.getElementById('image-box1').style.display = 'none'
+          document.getElementById('crop-btn1').style.display = 'none'
+          document.getElementById('confirm-btn1').style.display = 'block'
+        }, 'image/webp', 0.5);
+      });
+    }
+  }
+  function fileValidation3() {
+    const imagebox = document.getElementById('image-box1')
+    const crop_btn = document.getElementById('crop-btn1')
+    var fileInput = document.getElementById('file3');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      Swal.fire('Upload image only')
+      fileInput.value = '';
+      return false;
+    } else {
+      //Image preview
+      const img_data = fileInput.files[0]
+      const url = URL.createObjectURL(img_data)
+      imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+      const image = document.getElementById('image')
+      document.getElementById('image-box1').style.display = 'block'
+      document.getElementById('crop-btn1').style.display = 'block'
+      document.getElementById('confirm-btn1').style.display = 'none'
+
+      const cropper = new Cropper(image, {
+        autoCropArea: 1,
+        viewMode: 1,
+        scalable: false,
+        zoomable: false,
+        movable: false,
+        aspectRatio: 62 / 100,
+        //  preview: '.preview',
+        minCropBoxWidth: 180,
+        minCropBoxHeight: 240,
+      })
+      crop_btn.addEventListener('click', () => {
+        cropper.getCroppedCanvas().toBlob((blob) => {
+          let fileInputElement = document.getElementById('file3');
+          let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+          let container = new DataTransfer();
+
+          container.items.add(file);
+          const img = container.files[0]
+          var url = URL.createObjectURL(img)
+          fileInputElement.files = container.files;
+          document.getElementById('imgview3').src = url
+          document.getElementById('image-box1').style.display = 'none'
+          document.getElementById('crop-btn1').style.display = 'none'
+          document.getElementById('confirm-btn1').style.display = 'block'
+        }, 'image/webp', 0.5);
+      });
+    }
+  }
+  function fileValidation4() {
+    const imagebox = document.getElementById('image-box1')
+    const crop_btn = document.getElementById('crop-btn1')
+    var fileInput = document.getElementById('file4');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      Swal.fire('Upload image only')
+      fileInput.value = '';
+      return false;
+    } else {
+      //Image preview
+      const img_data = fileInput.files[0]
+      const url = URL.createObjectURL(img_data)
+      imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+      const image = document.getElementById('image')
+      document.getElementById('image-box1').style.display = 'block'
+      document.getElementById('crop-btn1').style.display = 'block'
+      document.getElementById('confirm-btn1').style.display = 'none'
+
+      const cropper = new Cropper(image, {
+        autoCropArea: 1,
+        viewMode: 1,
+        scalable: false,
+        zoomable: false,
+        movable: false,
+        aspectRatio: 62 / 100,
+        //  preview: '.preview',
+        minCropBoxWidth: 180,
+        minCropBoxHeight: 240,
+      })
+      crop_btn.addEventListener('click', () => {
+        cropper.getCroppedCanvas().toBlob((blob) => {
+          let fileInputElement = document.getElementById('file4');
+          let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+          let container = new DataTransfer();
+
+          container.items.add(file);
+          const img = container.files[0]
+          var url = URL.createObjectURL(img)
+          fileInputElement.files = container.files;
+          document.getElementById('imgview4').src = url
+          document.getElementById('image-box1').style.display = 'none'
+          document.getElementById('crop-btn1').style.display = 'none'
+          document.getElementById('confirm-btn1').style.display = 'block'
+        }, 'image/webp', 0.5);
+      });
+    }
+  }
+</script>
+
+
+
+
+
+

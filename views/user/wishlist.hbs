@@ -1,0 +1,117 @@
+
+		<section class="breadcrumb-section">
+			<h2 class="sr-only">Site Breadcrumb</h2>
+			<div class="container">
+				<div class="breadcrumb-contents">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+							<li class="breadcrumb-item active">Wishlist</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</section>
+		<!-- Wishlist Page Start -->
+		<div class="cart_area inner-page-sec-padding-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						{{!-- <form action="https://template.hasthemes.com/pustok/pustok/"> --}}
+							<!-- Cart Table -->
+							<div class="cart-table table-responsive">
+								
+								<table class="table">
+									<thead>
+										<tr>
+											<th class="pro-thumbnail">Image</th>
+												<th class="pro-title">Book</th>
+												<th class="pro-price">Author</th>
+												<th class="pro-quantity">Premium</th>
+												<th class="pro-subtotal">Shipping Cost</th>
+											<th class="pro-remove">Remove</th>
+										</tr>
+									</thead>
+									<tbody>
+										{{#each oneBook.wishItems}}
+
+										<tr>
+
+											<td class="pro-thumbnail"><a href="/product-details/{{this._id}}"><img
+														src="/book-images/{{this._id}}1.jpeg" alt="Product"></a></td>
+											<td class="pro-title"><a href="/product-details/{{this._id}}">{{this.book_name}}</a></td>
+											<td class="pro-price"><span>{{this.book_author}}</span></td>
+											
+
+											{{#if this.book_checkPremium}}
+												<td class="pro-price"><span>Yes</span></td>
+												{{else}}
+												<td class="pro-price"><span>No</span></td>
+												{{/if}}
+
+												<td class="pro-price"><span>₹{{../shiprate}}</span></td>
+
+											<td class="pro-remove"><a href="#" onclick="deleteWishlist(event,'{{this._id}}' , '{{this.book_name}}')">
+												<i class="far fa-trash-alt"></i></a></td>
+
+										</tr>
+
+										<a type="button" class=" btn btn-success " onclick="addToCart('{{this._id}}')">  Add To Cart</a>
+																					{{/each}}
+										
+									</tbody>
+								</table>
+								
+							</div>
+						{{!-- </form> --}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Cart Page End -->
+	</div>
+	<!--=================================
+  Brands Slider
+===================================== -->
+	<section class="section-margin">
+		<h2 class="sr-only">Brand Slider</h2>
+		<div class="container">
+			<div class="brand-slider sb-slick-slider border-top border-bottom" data-slick-setting='{
+                                            "autoplay": true,
+                                            "autoplaySpeed": 8000,
+                                            "slidesToShow": 6
+                                            }' data-slick-responsive='[
+                {"breakpoint":992, "settings": {"slidesToShow": 4} },
+                {"breakpoint":768, "settings": {"slidesToShow": 3} },
+                {"breakpoint":575, "settings": {"slidesToShow": 3} },
+                {"breakpoint":480, "settings": {"slidesToShow": 2} },
+                {"breakpoint":320, "settings": {"slidesToShow": 1} }
+            ]'>
+				<div class="single-slide">
+					<img src="image/others/brand-1.jpg" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="image/others/brand-2.jpg" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="image/others/brand-3.jpg" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="image/others/brand-4.jpg" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="image/others/brand-5.jpg" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="image/others/brand-6.jpg" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="image/others/brand-1.jpg" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="image/others/brand-2.jpg" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+	

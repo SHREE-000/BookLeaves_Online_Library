@@ -1,0 +1,285 @@
+<div style="height : 80vmin">
+<div class="w-100 bg-secondary mt-5" style="height: 50px;">
+    <h1 class="text-center fw-bold text-white m-5">SALES</h1>
+</div>
+
+{{#if errorMessage }}
+<div class="col-12 col-md-12 col-sm-12 col-lg-12">
+    <div class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+</div>
+{{/if }}
+
+{{#if successMessage }}
+<div class="col-12 col-md-12 col-sm-12 col-lg-12">
+    <div class="alert alert-danger">
+        {{ successMessage }}
+    </div>
+</div>
+{{/if }}
+
+<form action="/a-product/sale-view" method="post">
+
+    <div class="row d-flex justify-content-center ml-5 mt-5 mb-5">
+        <div class="col-md-3 text-center">
+            <label for="">Start date</label>
+            <input type="date" class="border form-control text-center" name="startdate" id="startdate">
+        </div>
+        <div class="col-md-3 text-center">
+            <label for="">End date</label>
+            <input type="date" class="border form-control text-center" name="enddate" id="enddate">
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </div>
+
+</form>
+
+
+<table id="tblData" class="table table-striped table-bordered mt-5 text-wrap container text-center" style="width:100%">
+    <thead>
+        <tr>
+            <th>SI NO</th>
+            <th>State</th>
+            <th>Total Number Of Subscriptions</th>
+            <th>Total Amount Collected Through Subscription</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each final}}
+        <tr>
+            <td class="index"></td>
+            <td>{{this._id}}</td>
+            <td>{{this.count}}</td>
+            <td>{{this.sum}}</td>
+        </tr>
+        {{/each}}
+        </tfoot>
+</table>
+
+<div class="text-center mt-5">
+    <button type="submit" onclick="exportTableToExcel('tblData')" id="myTable" class="btn btn-warning">Download As
+        Excel</button>
+    <button class="btn btn-info" id="data-print" onclick="return print()">Download As PDF</button>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- 
+<section class="container-scroller">
+
+    <div class="container-fluid page-body-wrapper">
+
+
+
+
+
+
+        <div class="container pt-5">
+            <div class="d-flex mt-5 justify-content-center">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 mt-5 p-5 rounded-3 shadow-lg grid-margin stretch-card"
+                            style="border-radius: 20px !important; overflow-y: auto;">
+                            <div class="wishlist-table table-content table-responsive table table-striped table-bordered"
+                                id="data-print">
+                                <table class="table table-bordered" id="myTable">
+                                    <h1 class="text-center">Sales Report</h1>
+
+
+
+
+                                    <div class="form-group  border-0">
+                                        <form action="/a-product/date-sort" method="post">
+                                            <div class="row d-flex ms-2">
+                                                <div class="col-md-3">
+                                                    <label for="">Start date</label>
+                                                    <input type="date" class="border form-control" name="startdate"
+                                                        id="startdate">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label for="">End date</label>
+
+                                                    <input type="date" class="border form-control" name="enddate"
+                                                        id="enddate">
+                                                </div>
+                                                <div class="col-md-3 d-flex align-items-end">
+
+                                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                                </div>
+                                                <div>
+                                                    <span> <button class="btn btn-primary " type="button"
+                                                            onclick="return print()">Download</button></span>
+                                                    <span> <button class="btn btn-primary " type="button"
+                                                            id="exportBtn1">Download In Excel</button></span>
+                                                </div>
+
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+
+
+
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Order Id</th>
+                                            <th>User name</th>
+                                            <th>Total Amount</th>
+                                            <th>Payment method</th>
+                                            <th>status</th>
+
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each allsalesreport}}
+                                        <tr>
+                                            <td>{{this.date}}</td>
+                                            <td>{{this._id}}</td>
+                                            <td>{{this.firstname}} {{this.lastname}}</td>
+                                            <td>{{this.totalamount}}</td>
+                                            <td>{{this.paymentmethod}}</td>
+                                            <td>{{this.status}} </td>
+
+
+
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#exportBtn1").click(function () {
+            TableToExcel.convert(document.getElementById("myTable"), {
+                name: "Traceability.xlsx",
+                sheet: {
+                    name: "Sheet1"
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+<style>
+    .custom-select {
+        position: relative;
+        font-family: Arial;
+    }
+
+    .custom-select select {
+        display: none;
+        /*hide original SELECT element: */
+    }
+
+    .select-selected {
+        background-color: DodgerBlue;
+    }
+
+    /* Style the arrow inside the select element: */
+    .select-selected:after {
+        position: absolute;
+        content: "";
+        top: 14px;
+        right: 10px;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-color: #fff transparent transparent transparent;
+    }
+
+    /* Point the arrow upwards when the select box is open (active): */
+    .select-selected.select-arrow-active:after {
+        border-color: transparent transparent #fff transparent;
+        top: 7px;
+    }
+
+    /* style the items (options), including the selected item: */
+    .select-items div,
+    .select-selected {
+        color: #ffffff;
+        padding: 8px 16px;
+        border: 1px solid transparent;
+        border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+        cursor: pointer;
+    }
+
+    /* Style items (options): */
+    .select-items {
+        position: absolute;
+        background-color: DodgerBlue;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 99;
+    }
+
+    /* Hide the items when the select box is closed: */
+    .select-hide {
+        display: none;
+    }
+
+    .select-items div:hover,
+    .same-as-selected {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+</style> --}}

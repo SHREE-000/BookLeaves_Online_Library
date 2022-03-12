@@ -1,0 +1,537 @@
+<style>
+  /* .image_area {
+		  position: relative;
+		} */
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .preview {
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    margin: 10px;
+    border: 1px solid red;
+  }
+
+  .modal-lg {
+    max-width: 1000px !important;
+  }
+
+  .overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    height: 0;
+    transition: .5s ease;
+    width: 100%;
+  }
+
+  .image_area:hover .overlay {
+    height: 50%;
+    cursor: pointer;
+  }
+
+  .text {
+    color: #333;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+</style>
+
+
+
+
+<section class="container-scroller">
+
+
+  <div class="container-fluid page-body-wrapper">
+
+
+   
+     <div class="container pt-5">
+            <div class="d-flex mt-5 justify-content-center">
+
+    <div class="col-lg-8 mt-5 rounded-2 shadow-lg grid-margin stretch-card" style="border-radius: 25px !important;">
+      <div class="contents order-2 order-md-1">
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-md-12">
+              <div class="text-center mb-5 mt-5">
+                <h3><strong> Add Promotion Banner </strong></h3>
+              </div>
+              <form action="/a-product/promotion-banner/{{promotionBannerDetails._id}}" onsubmit="return validationaddressplaceSecondBanner()" method="POST" enctype="multipart/form-data" 
+                style="padding-top: 40px;" id="add-prod">
+                
+                <div class="form-row">  
+
+                  <div class="form-group col-md-6">                  
+                    <label for="inputName">First Banner  Heading</label>
+                    <input type="text" class="form-control" id="inputName" name="first_promotion_heading" value="{{promotionBannerDetails.first_promotion_heading}}" placeholder="Write Here">
+                     <p id="product" class="text text-danger"></p>
+                  </div>
+
+                   <div class="form-group col-md-6">                  
+                    <label for="inputName">First Banner Body</label>
+                    <input type="text" class="form-control" id="inputName" name="first_promotion_body" value="{{promotionBannerDetails.first_promotion_body}}" placeholder="Write Here">
+                     <p id="product" class="text text-danger"></p>
+                  </div>
+
+                </div>
+
+                <div class="form-row">  
+
+                  <div class="form-group col-md-6">                  
+                    <label for="inputName">Second Banner Heading</label>
+                    <input type="text" class="form-control" id="inputName" name="second_promotion_heading" value="{{promotionBannerDetails.second_promotion_heading}}" placeholder="Write Here">
+                     <p id="product" class="text text-danger"></p>
+                  </div>
+
+                   <div class="form-group col-md-6">                  
+                    <label for="inputName">Second Banner Body</label>
+                    <input type="text" class="form-control" id="inputName" name="second_promotion_body" value="{{promotionBannerDetails.second_promotion_body}}" placeholder="Write Here">
+                     <p id="product" class="text text-danger"></p>
+                  </div>
+
+                </div>
+                
+                <div class="row">
+                  <div id="image-box1" style="width: 300px; height: 300px; display: none;">
+                  </div>
+                  <div>
+                    <button class="btn btn-primary mt-3" type="button" style="display: none;"
+                      id="crop-btn1">Done</button>
+                  </div>
+                  <div class="mt-5 col-md-6">
+                    <label for="">First Banner Image </label>
+                    <img src="/second-banner-images/{{promotionBannerDetails._id}}1.jpeg" alt="" style="width: 100px; height:auto" id="imgview1">
+                    <input type="file" name="image1" id="file1" class="form-control"
+                      onchange="return fileValidationPromotionBanner1()">
+                      <p id="image1" class="text text-danger"></p>
+     
+                  </div>
+                  <div class="mt-5 col-md-6">
+                    <label for="">Second Banner Image</label>
+                    <img src="/second-banner-images/{{promotionBannerDetails._id}}2.jpeg" alt="" style="width: 100px; height:auto" id="imgview2">
+                    <input type="file" name="image2" id="file2" class="form-control"
+                      onchange="return fileValidationPromotionBanner2()">
+                      <p id="image2" class="text text-danger"></p>
+                
+                  </div>
+                  
+
+                </div>
+
+                <center>
+                  <button id="confirm-btn1" type="submit" class="btn btn-primary mt-5 mb-5">Add
+                    Second  Banner</button><br>
+                </center>
+
+                <p class="text-danger text-center" style="display: none;" id="errMsg">Only Image is
+                  Accepted</p>
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+       </div>
+    </div>
+  </div>
+</section>
+
+ {{!-- <div class="column float-right m-5 " >
+<a href="/a-product/add-product" class="btn btn-success " style="width: 30%;    flex-basis: max-content;">Add New Book</a>
+</div> --}}
+
+{{!-- <div class="column mt-5" style="width: 100%;">
+<section class="">
+
+<table id="myTable" class="mt-5" style="width: 100%;    flex-basis: max-content;">  
+        <thead class="font-weight-bold"> 
+
+         <tr>
+      <th scope="col">No</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Number of Books</th>
+      <th scope="col">Author Name</th>
+      <th scope="col">Language</th>
+      <th scope="col">Category</th>
+      <th scope="col">Sub Category</th>
+      <th scope="col">Book Description</th>
+      <th scope="col">Check Premium</th>
+      <th scope="col">Image</th>
+      <th></th>
+      <th></th>
+      
+    </tr> 
+
+        </thead>  
+
+        <tbody>
+
+    {{#each book}}
+    <tr>
+      <td scope="row" class="index"></td>
+      <td>{{this.book_name}}</td>
+      <td>{{this.number_of_books}}</td>
+      <td>{{this.book_author}}</td>
+      <td>{{this.book_language}}</td>
+      <td>{{this.book_category}}</td>
+      <td>{{this.book_sub_category}}</td>
+      <td>{{this.book_description}}</td>
+      <td>{{this.book_checkPremium}}</td>
+      <td> <img style="width: 50px; height: 50px;" src="/book-images/{{this._id}}1.jpeg" alt=""> </td>
+      <td> <a href="/a-product/product-edit/{{this._id}}" class="btn btn-primary" >Edit </a> </td>
+      <td> <a href="/a-product/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Data ({{this.book_name}}) will delete permanently, are you sure ?')" >Delete </a> </td>
+    </tr>
+    {{/each}}
+   
+  </tbody> 
+
+      </table> 
+
+    </section>
+    </div>
+
+    </div> --}}
+
+   <table id="example" class="table table-striped nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">First Banner Heading</th>
+      <th scope="col">First Banner Body</th>
+      <th scope="col">Second Banner Heading</th>
+      <th scope="col">Second Banner Body</th>
+      <th scope="col">Image 1</th>
+      <th scope="col">Image 2</th>
+      <th></th>
+      <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {{#each promotionBannerDetails}}
+    <tr>
+      <td scope="row" class="index"></td>
+      <td>{{this.first_promotion_heading}}</td>
+      <td>{{this.first_promotion_body}}</td>
+      <td>{{this.second_promotion_heading}}</td>
+      <td>{{this.second_promotion_body}}</td>
+      <td> <img style="width: 50px; height: 50px;" src="/promotion-images/{{this._id}}1.jpeg" alt=""> </td>
+      <td> <img style="width: 50px; height: 50px;" src="/promotion-images/{{this._id}}2.jpeg" alt=""> </td>
+      <td> <a href="/a-product/edit-promotion-banner/{{this._id}}" class="btn btn-primary" >Edit </a> </td>
+      <td> <a href="/a-product/delete-promotion-banner/{{this._id}}" class="btn btn-danger" onclick="return confirm('Data ({{this.second_banner_name}}) will delete permanently, are you sure ?')" >Delete </a> </td>
+    </tr>
+    {{/each}}
+            
+        </tbody>
+        
+    </table>
+   
+
+<script>
+
+
+  //Cropper js function
+
+  function fileValidationPromotionBanner1() {
+  
+    const imagebox = document.getElementById('image-box1')
+    const crop_btn = document.getElementById('crop-btn1')
+    var fileInput = document.getElementById('file1');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      fileInput.value = '';
+      Swal.fire('Upload image only') 
+      return false;
+    } else {
+      //Image preview
+      const img_data = fileInput.files[0]
+      const url = URL.createObjectURL(img_data)
+      imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+      const image = document.getElementById('image')
+      document.getElementById('image-box1').style.display = 'block'
+      document.getElementById('crop-btn1').style.display = 'block'
+      document.getElementById('confirm-btn1').style.display = 'none'
+
+      const cropper = new Cropper(image, {
+        autoCropArea: 1,
+        viewMode: 1,
+        scalable: false,
+        zoomable: false,
+        movable: false,
+        aspectRatio: 4 / 2,
+        //  preview: '.preview',
+        minCropBoxWidth: 50,
+        minCropBoxHeight: 50,
+      })
+      crop_btn.addEventListener('click', () => {
+        cropper.getCroppedCanvas().toBlob((blob) => {
+          let fileInputElement = document.getElementById('file1');
+          let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+          let container = new DataTransfer();
+
+          container.items.add(file);
+          const img = container.files[0]
+          var url = URL.createObjectURL(img)
+          fileInputElement.files = container.files;
+          document.getElementById('imgview1').src = url
+          document.getElementById('image-box1').style.display = 'none'
+          document.getElementById('crop-btn1').style.display = 'none'
+          document.getElementById('confirm-btn1').style.display = 'block'
+        }, 'image/webp', 0.5);
+      });
+    }
+  }
+  function fileValidationPromotionBanner2() {
+    const imagebox = document.getElementById('image-box1')
+    const crop_btn = document.getElementById('crop-btn1')
+    var fileInput = document.getElementById('file2');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      Swal.fire('Upload image only')
+      fileInput.value = '';
+      return false;
+    } else {
+      //Image preview
+      const img_data = fileInput.files[0]
+      const url = URL.createObjectURL(img_data)
+      imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+      const image = document.getElementById('image')
+      document.getElementById('image-box1').style.display = 'block'
+      document.getElementById('crop-btn1').style.display = 'block'
+      document.getElementById('confirm-btn1').style.display = 'none'
+
+      const cropper = new Cropper(image, {
+        autoCropArea: 1,
+        viewMode: 1,
+        scalable: false,
+        zoomable: false,
+        movable: false,
+        aspectRatio: 4 / 2,
+        //  preview: '.preview',
+        minCropBoxWidth: 50,
+        minCropBoxHeight: 50,
+      })
+      crop_btn.addEventListener('click', () => {
+        cropper.getCroppedCanvas().toBlob((blob) => {
+          let fileInputElement = document.getElementById('file2');
+          let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+          let container = new DataTransfer();
+
+          container.items.add(file);
+          const img = container.files[0]
+          var url = URL.createObjectURL(img)
+          fileInputElement.files = container.files;
+          document.getElementById('imgview2').src = url
+          document.getElementById('image-box1').style.display = 'none'
+          document.getElementById('crop-btn1').style.display = 'none'
+          document.getElementById('confirm-btn1').style.display = 'block'
+        }, 'image/webp', 0.5);
+      });
+    }
+  }
+  
+</script>
+
+
+
+{{!-- <script src=" https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script> --}}
+
+
+
+<script>
+  function validationaddressplaceSecondBanner() {
+    var name = document.getElementById("inputName").value;
+    var brand = document.getElementById("brand").value;
+    var category = document.getElementById("categorys").value;
+    var subcategory = document.getElementById("subcategory").value;
+    var Price = document.getElementById("Price").value;
+    var stock = document.getElementById("inputStock").value;
+    var fabric = document.getElementById("fabric").value;
+    var packof = document.getElementById("inputpackof").value;
+    var color = document.getElementById("color").value;
+    var size = document.getElementById("size").value;
+    var image1=document.getElementById("file1").value
+    var image2=document.getElementById("file2").value
+    var image3=document.getElementById("file3").value
+    var image4=document.getElementById("file4").value
+
+    if (name == "") {
+      document.getElementById("product").innerHTML =
+        "Please enter product name";
+      return false;
+    }
+    if (!isNaN(name)) {
+      document.getElementById("product").innerHTML =
+        " Enter the valid characters";
+      return false;
+    }
+    if (brand == "") {
+      document.getElementById("brandone").innerHTML =
+        " Please  select brand";
+      return false;
+    }
+    if (brand.length <= 2 || brand.length > 20) {
+      document.getElementById("brandone").innerHTML =
+        "Please enter more than 2 characters and shorter than 20 characters";
+      return false;
+    }
+    if (!isNaN(brand)) {
+      document.getElementById("brandone").innerHTML =
+        " Only enter characters";
+      return false;
+    }
+
+    if (category == "") {
+      document.getElementById("categoryone").innerHTML =
+        " Please select the catagory";
+      return false;
+    }
+   
+    if (!isNaN(category)) {
+      document.getElementById("categoryone").innerHTML =
+        " Only enter characters";
+      return false;
+    }
+
+
+
+    if (subcategory == "") {
+      document.getElementById("subcategoryone").innerHTML =
+        " Please Enter Subcatagory";
+      return false;
+    }
+    if (!isNaN(subcategory)) {
+      document.getElementById("subcategoryone").innerHTML =
+        " Only enter characters";
+      return false;
+    }
+
+
+    if (Price == "") {
+      document.getElementById("Priceone").innerHTML =
+        " Please Enter price";
+      return false;
+    }
+    if (isNaN(Price)) {
+      document.getElementById("Priceone").innerHTML =
+        " Only enter characters";
+      return false;
+    }
+
+
+    if (stock == "") {
+      document.getElementById("stockone").innerHTML =
+        " Please Enter stock";
+      return false;
+    }
+    
+    if (isNaN(stock)) {
+      document.getElementById("stockone").innerHTML =
+        " Only enter characters";
+      return false;
+    }
+
+
+
+    if (fabric == "") {
+      document.getElementById("fabrione").innerHTML =
+        "Please enter  fabric";
+      return false;
+    }
+    if (fabric.length <= 2 || fabric.length > 20) {
+      document.getElementById("fabrione").innerHTML =
+        " The length is to short ";
+      return false;
+    }
+    if (!isNaN(fabric)) {
+      document.getElementById("fabrione").innerHTML =
+        " Enter the valid characters";
+      return false;
+    }
+
+
+    if (packof == "") {
+      document.getElementById("packof").innerHTML =
+        "Please enter pack";
+      return false;
+    }
+    if (isNaN(packof)) {
+      document.getElementById("packof").innerHTML =
+        " Enter the valid characters";
+      return false;
+    }
+
+
+    if (color == "") {
+      document.getElementById("colorone").innerHTML =
+        "Please enter colour";
+      return false;
+    }
+    if (color.length <= 2 || color.length > 20) {
+      document.getElementById("colorone").innerHTML =
+        " The length is to short ";
+      return false;
+    }
+    if (!isNaN(color)) {
+      document.getElementById("colorone").innerHTML =
+        " Enter the valid characters";
+      return false;
+    }
+
+
+    if (size == "") {
+      document.getElementById("sizeone").innerHTML =
+        "Please enter the size";
+      return false;
+    }
+    if (isNaN(size)) {
+      document.getElementById("sizeone").innerHTML =
+        " Enter the valid characters";
+      return false;
+    }
+        if (image1 == "") {
+      document.getElementById("img1").innerHTML =
+        "Please uplod image";
+      return false;
+    }
+         if (image2 == "") {
+      document.getElementById("img2").innerHTML =
+        "Please uplod image";
+      return false;
+    }
+         if (image3 == "") {
+      document.getElementById("img3").innerHTML =
+        "Please uplod image";
+      return false;
+    }
+         if (image4 == "") {
+      document.getElementById("img4").innerHTML =
+        "Please uplod image";
+      return false;
+    }
+
+  }
+</script>
+

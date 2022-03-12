@@ -1,0 +1,85 @@
+<section class="login">
+<div class="container d-flex align-items-center justify-content-center" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+<form class="m-5" id="" method="post" action="/a-product">
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+  
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark">Add Category</label>
+    <input type="text" name="book_category" class="form-control" id="exampleInputPassword">
+  </div>
+  
+
+  <button type="submit" onclick="" class="btn btn-dark">Add</button>
+
+  </form>
+</div>
+
+<div class="container d-flex align-items-center justify-content-center" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+<form class="m-5" id="" method="post" action="/a-product/delete-category">
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+ 
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark">Delete Category</label>
+    
+  </div>
+
+
+                    <label for="category">Category</label>
+                    <select name="book_category" id="categorys" class="custom-select p-2">
+                      <option value="" selected>Choose a Category</option>
+                      <p id="categoryone" class="text text-danger"></p>
+                      {{#each category}}
+                      <option class="text-dark" value="{{this._id}}">{{this.category}}</option>
+                      {{/each}}
+                       <p id="categoryone" class="text text-danger"></p>
+                    </select> 
+                 
+  
+
+  <button type="submit"  class="m-5 btn btn-danger">Delete</button>
+ 
+  </form>
+  <a type="submit" href="/a-product/sub-category" class=" m-5 btn btn-primary">Add Sub Category</a>
+
+</div>
+</section>
+
+
+
+
+
+
+
+

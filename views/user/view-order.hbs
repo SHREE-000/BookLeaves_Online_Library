@@ -1,0 +1,53 @@
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+<div class="container">
+<table id="example" class="table table-striped text-wrap mt-5" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+      <th scope="col">Date</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Ship Rate</th>
+      <th scope="col">Image</th>
+      <th scope="col">Payment</th>
+      <th scope="col">Status</th>
+      <th></th>
+      <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {{#each orders}}
+    <tr>
+      <td scope="row" class="index"></td>
+      <td>{{this.date}}</td>
+      <td>{{this.book.book_name}}</td>
+      <td>{{this.ship_rate}}</td>
+      <td> <img style="width: 50px; height: 50px;" src="/book-images/{{this.book._id}}1.jpeg" alt=""> </td>
+       <td>{{this.payment}}</td>
+      <td>{{this.status}}</td>
+      <td> <a href="/order-book-details/{{this.book_id}}" class="btn btn-primary" >Book Details </a> </td>
+      {{#if this.isActive}}
+      <td> <a href="/cancel-order/{{this._id}}" class="btn btn-danger" onclick="return confirm('Data ({{this.book_name}}) will delete permanently, are you sure ?')" >Cancell </a> </td>
+      {{/if}}
+    </tr>
+    {{/each}}
+            
+        </tbody>
+        
+    </table>
+    </div>

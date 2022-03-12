@@ -1,0 +1,867 @@
+
+<style>
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+</style>
+
+
+{{#if address}}
+
+<section class="breadcrumb-section">
+	<h2 class="sr-only">Site Breadcrumb</h2>
+	<div class="container">
+		<div class="breadcrumb-contents">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item active">Checkout</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+</section>
+
+
+
+<main id="content" class="page-section inner-page-sec-padding-bottom space-db--20 mt-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Checkout Form s-->
+				<div class="checkout-form text-center">
+					<div class="row ">
+						<div class="col-12">
+							
+							<!-- Slide Down Trigger  -->
+							{{!-- <div class="checkout-quick-box">
+								<p><i class="far fa-sticky-note"></i>Returning customer? <a href="javascript:"
+										class="slide-trigger" data-target="#quick-login">Click
+										here to login</a></p>
+							</div>
+							<!-- Slide Down Blox ==> Login Box  -->
+							<div class="checkout-slidedown-box" id="quick-login">
+								<form action="https://template.hasthemes.com/pustok/pustok/">
+									<div class="quick-login-form">
+										<p>If you have shopped with us before, please enter your details in the
+											boxes below. If you are a new
+											customer
+											please
+											proceed to the Billing & Shipping section.</p>
+										<div class="form-group">
+											<label for="quick-user">Username or email *</label>
+											<input type="text" placeholder="" id="quick-user">
+										</div>
+										<div class="form-group">
+											<label for="quick-pass">Password *</label>
+											<input type="text" placeholder="" id="quick-pass">
+										</div>
+										<div class="form-group">
+											<div class="d-flex align-items-center flex-wrap">
+												<a href="#" class="btn btn-outlined me-3">Login</a>
+												<div class="d-inline-flex align-items-center">
+													<input type="checkbox" id="accept_terms" class="mb-0 mx-1">
+													<label for="accept_terms" class="mb-0">I’ve read and accept
+														the terms &amp; conditions</label>
+												</div>
+											</div>
+											<p><a href="javascript:" class="pass-lost mt-3">Lost your
+													password?</a></p>
+										</div>
+									</div>
+								</form>
+							</div> --}}
+
+						</div>
+						<form action="/add-profile-checkout" method="post" onsubmit="return validationaddressplace()"
+							method="POST" enctype="multipart/form-data" id="add-prod">
+							<div class="col-lg-12 mb--20">
+								<!-- Billing Address -->
+								<div id="billing-form" class="mb-40">
+									<h4 class="checkout-title">Add Rental Address</h4>
+									<div class="row">
+										<div class="col-md-6 col-12 mb--20">
+											<label>Name*</label>
+											<input name="user_name" type="text" placeholder="First Name">
+										</div>
+
+										<div class="col-md-6 col-12 mb--20">
+											<label>Phone no*</label>
+											<input name="user_number" type="text" placeholder="Phone number">
+										</div>
+
+
+										<div class="col-md-6 col-12 mb--20">
+											<label for="inputDistrict">State</label>
+											<select id="inputState" name="State" style="width: 270px; height: 50px;"
+												class="form-control select">
+
+												<option value="">-- select one -- </option>
+												<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+												<option value="Assam">Assam</option>
+												<option value="Bihar">Bihar</option>
+												<option value="Chhattisgarh">Chhattisgarh</option>
+												<option value="Goa">Goa</option>
+												<option value="Gujarat">Gujarat</option>
+												<option value="Haryana">Haryana</option>
+												<option value="Himachal Pradesh">Himachal Pradesh</option>
+												<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+												<option value="Jharkhand">Jharkhand</option>
+												<option value="Karnataka">Karnataka</option>
+												<option value="Kerala">Kerala</option>
+												<option value="Madya Pradesh">Madya Pradesh</option>
+												<option value="Maharashtra">Maharashtra</option>
+												<option value="Manipur">Manipur</option>
+												<option value="Meghalaya">Meghalaya</option>
+												<option value="Mizoram">Mizoram</option>
+												<option value="Nagaland">Nagaland</option>
+												<option value="Orissa">Orissa</option>
+												<option value="Punjab">Punjab</option>
+												<option value="Rajasthan">Rajasthan</option>
+												<option value="Sikkim">Sikkim</option>
+												<option value="Tamil Nadu">Tamil Nadu</option>
+												<option value="Telangana">Telangana</option>
+												<option value="Tripura">Tripura</option>
+												<option value="Uttaranchal">Uttaranchal</option>
+												<option value="Uttar Pradesh">Uttar Pradesh</option>
+												<option value="West Bengal">West Bengal</option>
+												<option value="Andra Pradesh">Andra Pradesh</option>
+												<option disabled style="background-color:#aaa; color:#fff">
+													UNION
+													Territories</option>
+												<option value="Andaman and Nicobar Islands">Andaman and
+													Nicobar
+													Islands</option>
+												<option value="Chandigarh">Chandigarh</option>
+												<option value="Dadar and Nagar Haveli">Dadar and Nagar
+													Haveli
+												</option>
+												<option value="Daman and Diu">Daman and Diu</option>
+												<option value="Delhi">Delhi</option>
+												<option value="Lakshadeep">Lakshadeep</option>
+												<option value="Pondicherry">Pondicherry</option>
+
+
+
+											</select>
+											<small class="text-danger" id="State"></small>
+										</div>
+										<div class="col-md-6 col-12 mb--20">
+											<label for="inputDistrict">District</label>
+											<select id="inputDistrict" name="City" style="width: 270px; height: 50px;"
+												class="select form-control">
+												<option value="">-- select one -- </option>
+											</select>
+											<small class="text-danger" id="City"></small>
+										</div>
+
+										
+
+										<div class="col-md-6 col-12 mb--20">
+											<label>Email Address*</label>
+											<input name="user_email" type="email" placeholder="Email Address">
+										</div>
+
+
+
+										<div class="col-md-6 col-12 mb--20">
+											<label>Address*</label>
+											<input name="user_address" type="text" placeholder="Address">
+										</div>
+										<div class="col-md-6 col-12 mb--20">
+											<label>Town/City*</label>
+											<input name="user_town" type="text" placeholder="Town/City">
+										</div>
+										<div class="col-md-6 col-12 mb--20">
+											<label>Zip Code*</label>
+											<input name="user_zip_code" type="text" placeholder="Zip Code">
+										</div>
+
+
+
+									</div>
+								</div>
+							</div>
+							<button id="confirm-btn1" type="submit" class="btn btn-success"> Add</button>
+						
+
+					</div>
+
+				</div>
+			</div>
+			</form>
+		</div>
+</main>
+
+
+
+
+<main id="content" class="page-section inner-page-sec-padding-bottom space-db--20">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Checkout Form s-->
+				<div class="checkout-form">
+					<div class="row row-40">
+						<div class="col-12">
+							<h1 class="quick-title text-center">CHECKOUT</h1>
+							<!-- Slide Down Trigger  -->
+
+
+							{{!-- <div class="checkout-quick-box">
+								<p><i class="far fa-sticky-note"></i>Have a coupon? <a href="/coupon-view"
+										class="slide-trigger" data-target="#quick-cupon">
+										Click here to enter your code</a></p>
+							</div> --}}
+
+						</div>
+
+
+
+
+
+
+
+						<form id="checkOut-form">
+
+
+
+
+
+
+
+
+
+
+
+							<!-- Billing Address -->
+
+							<h4 class="checkout-title fw-bold"> Confirm Pay</h4>
+
+					</div>
+				</div>
+			</div>
+
+
+			{{#if errorMessage }}
+			<div class="col-12 col-md-12 col-sm-12 col-lg-12">
+				<div class="alert alert-danger text-center">
+					{{ errorMessage }}
+				</div>
+			</div>
+			{{/if }}
+
+			{{#if successMessage }}
+			<div class="col-12 col-md-12 col-sm-12 col-lg-12">
+				<div class="alert alert-success text-center">
+					{{ successMessage }}
+				</div>
+			</div>
+			{{/if }}
+
+
+			<div class="row d-flex justify-content-center mt-5 ">
+
+				{{#each address}}
+				<div class="col-sm-4  d-flex justify-content-center">
+					<div class="card shadow p-3 mb-5 bg-white rounded">
+						<div class="card-body">
+							<h5 class="card-title">Address</h5>
+							<p class="card-text">Name : {{this.user_name}}</p>
+							<p class="card-title">Email : {{this.user_email}}</p>
+							<p class="card-title">Number : {{this.user_number}}</p>
+							<p class="card-title">State : {{this.State}}</p>
+							<p class="card-title">City : {{this.City}}</p>
+							<p class="card-title">Address : {{this.user_address}}</p>
+							<p class="card-title">Town : {{this.user_town}}</p>
+							<p class="card-title">Pin Code : {{this.user_zip_code}}</p>
+
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="selectAddress" id="flexRadioDefault1"
+									value="{{this.id}}" checked>
+								<label class="form-check-label text-success  text-success" for="flexRadioDefault1">
+									Choose
+								</label>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+				{{/each}}
+
+				<div class="col-sm-4">
+					<div class="row">
+						<!-- Cart Total -->
+						<div class="col-12">
+							<div class="checkout-cart-total shadow p-3 mb-5 bg-white rounded">
+								<h2 class="checkout-title">YOUR RENTAL BOOK</h2>
+								<h4>Book <span>Total</span></h4>
+								<ul>
+									{{#each oneBook.cartItems}}
+									<li><span class="left">{{this.book_name}}</span> <span
+											class="right">₹{{../shiprate}}</span></li>
+									{{/each}}
+
+
+
+								</ul>
+
+								<p>Shipping Fee <span>₹{{shiprate}}</span></p>
+								<h4>Grand Total <span>₹{{totalRate}}</span></h4>
+
+								<div class="form-check mt-5">
+									<input class="form-check-input " type="radio" name="payment" value="COD"
+										id="flexRadioDefault1">
+									<label class="form-check-label mx-5" for="flexRadioDefault1">
+										COD
+									</label>
+
+								</div>
+								<div class="form-check ">
+									<input class="form-check-input " type="radio" name="payment" value="RazorPay"
+										id="flexRadioDefault2" checked>
+									<label class="form-check-label mx-5" for="flexRadioDefault2">
+										Razorpay
+									</label>
+								</div>
+								<div class="form-check ">
+									<input class="form-check-input " type="radio" name="payment" value="PayPal"
+										id="flexRadioDefault3">
+									<label class="form-check-label mx-5" for="flexRadioDefault2">
+										PayPal
+									</label>
+								</div>
+
+								
+
+								{{#if nullBook}}
+								
+								<a class=" btn btn-success place-order w-100" href="/">Pick A Book</a>
+
+								{{else}}
+
+								<button class="place-order w-100" id="rentButton">Place Rent</button>
+								<div id="snackbar">As Per The Plan Maximum Count Of Rent Books Are Exceed</div>
+
+								{{/if}}
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+			</div>
+
+
+
+
+
+
+			
+
+			</form>
+
+
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+</main>
+</div>
+
+
+
+
+
+
+{{!-- Add New Address --}}
+
+
+
+
+{{else}}
+<main id="content" class="page-section inner-page-sec-padding-bottom space-db--20">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Checkout Form s-->
+				<div class="checkout-form">
+					<div class="row row-40">
+						<div class="col-12">
+							<h4 class="quick-title">You haven't added delivery address
+								<br>
+								<h1>Please Add A New Delivery Address</h1>
+							</h4>
+							<!-- Slide Down Trigger  -->
+							<div class="checkout-quick-box">
+								<p><i class="far fa-sticky-note"></i>Returning customer? <a href="javascript:"
+										class="slide-trigger" data-target="#quick-login">Click
+										here to login</a></p>
+							</div>
+							<!-- Slide Down Blox ==> Login Box  -->
+							<div class="checkout-slidedown-box" id="quick-login">
+								<form action="https://template.hasthemes.com/pustok/pustok/">
+									<div class="quick-login-form">
+										<p>If you have shopped with us before, please enter your details in the
+											boxes below. If you are a new
+											customer
+											please
+											proceed to the Billing & Shipping section.</p>
+										<div class="form-group">
+											<label for="quick-user">Username or email *</label>
+											<input type="text" placeholder="" id="quick-user">
+										</div>
+										<div class="form-group">
+											<label for="quick-pass">Password *</label>
+											<input type="text" placeholder="" id="quick-pass">
+										</div>
+										<div class="form-group">
+											<div class="d-flex align-items-center flex-wrap">
+												<a href="#" class="btn btn-outlined me-3">Login</a>
+												<div class="d-inline-flex align-items-center">
+													<input type="checkbox" id="accept_terms" class="mb-0 mx-1">
+													<label for="accept_terms" class="mb-0">I’ve read and accept
+														the terms &amp; conditions</label>
+												</div>
+											</div>
+											<p><a href="javascript:" class="pass-lost mt-3">Lost your
+													password?</a></p>
+										</div>
+									</div>
+								</form>
+							</div>
+
+						</div>
+						<form action="/add-profile-checkout" method="post" onsubmit="return validationaddressplace()"
+							method="POST" enctype="multipart/form-data" id="add-prod">
+							<div class="col-lg-7 mb--20">
+								<!-- Billing Address -->
+								<div id="billing-form" class="mb-40">
+									<h4 class="checkout-title">Rental Address</h4>
+									<div class="row">
+										<div class="col-md-6 col-12 mb--20">
+											<label>Name*</label>
+											<input name="user_name" type="text" placeholder="First Name">
+										</div>
+
+
+										<div class="col-md-6 col-12 mb--20">
+											<label>Email Address*</label>
+											<input name="user_email" type="email" placeholder="Email Address">
+										</div>
+										<div class="col-md-6 col-12 mb--20">
+											<label>Phone no*</label>
+											<input name="user_number" type="text" placeholder="Phone number">
+										</div>
+
+
+										<div class="col-md-6 col-12 mb--20">
+											<label for="inputDistrict">State</label>
+											<select id="inputState" name="State" style="width: 270px; height: 50px;"
+												class="form-control select">
+
+												<option value="">-- select one -- </option>
+												<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+												<option value="Assam">Assam</option>
+												<option value="Bihar">Bihar</option>
+												<option value="Chhattisgarh">Chhattisgarh</option>
+												<option value="Goa">Goa</option>
+												<option value="Gujarat">Gujarat</option>
+												<option value="Haryana">Haryana</option>
+												<option value="Himachal Pradesh">Himachal Pradesh</option>
+												<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+												<option value="Jharkhand">Jharkhand</option>
+												<option value="Karnataka">Karnataka</option>
+												<option value="Kerala">Kerala</option>
+												<option value="Madya Pradesh">Madya Pradesh</option>
+												<option value="Maharashtra">Maharashtra</option>
+												<option value="Manipur">Manipur</option>
+												<option value="Meghalaya">Meghalaya</option>
+												<option value="Mizoram">Mizoram</option>
+												<option value="Nagaland">Nagaland</option>
+												<option value="Orissa">Orissa</option>
+												<option value="Punjab">Punjab</option>
+												<option value="Rajasthan">Rajasthan</option>
+												<option value="Sikkim">Sikkim</option>
+												<option value="Tamil Nadu">Tamil Nadu</option>
+												<option value="Telangana">Telangana</option>
+												<option value="Tripura">Tripura</option>
+												<option value="Uttaranchal">Uttaranchal</option>
+												<option value="Uttar Pradesh">Uttar Pradesh</option>
+												<option value="West Bengal">West Bengal</option>
+												<option value="Andra Pradesh">Andra Pradesh</option>
+												<option disabled style="background-color:#aaa; color:#fff">
+													UNION
+													Territories</option>
+												<option value="Andaman and Nicobar Islands">Andaman and
+													Nicobar
+													Islands</option>
+												<option value="Chandigarh">Chandigarh</option>
+												<option value="Dadar and Nagar Haveli">Dadar and Nagar
+													Haveli
+												</option>
+												<option value="Daman and Diu">Daman and Diu</option>
+												<option value="Delhi">Delhi</option>
+												<option value="Lakshadeep">Lakshadeep</option>
+												<option value="Pondicherry">Pondicherry</option>
+
+
+
+											</select>
+											<small class="text-danger" id="State"></small>
+										</div>
+										<div class="col-md-6 col-12 mb--20">
+											<label for="inputDistrict">District</label>
+											<select id="inputDistrict" name="City" style="width: 270px; height: 50px;"
+												class="select form-control">
+												<option value="">-- select one -- </option>
+											</select>
+											<small class="text-danger" id="City"></small>
+										</div>
+
+										<div class="col-md-6 mb-4">
+
+
+
+										</div>
+
+
+
+										<div class="col-12 mb--20">
+											<label>Address*</label>
+											<input name="user_address" type="text" placeholder="Address">
+										</div>
+										<div class="col-md-6 col-12 mb--20">
+											<label>Town/City*</label>
+											<input name="user_town" type="text" placeholder="Town/City">
+										</div>
+										<div class="col-md-6 col-12 mb--20">
+											<label>Zip Code*</label>
+											<input name="user_zip_code" type="text" placeholder="Zip Code">
+										</div>
+
+
+
+									</div>
+								</div>
+							</div>
+							<button id="confirm-btn1" type="submit" class="btn btn-success"> Add</button>
+						
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+</main>
+
+{{/if}}
+
+
+
+<script>
+
+	//Cropper js function
+
+	function fileValidation1() {
+
+		const imagebox = document.getElementById('image-box1')
+		const crop_btn = document.getElementById('crop-btn1')
+		var fileInput = document.getElementById('file1');
+
+		var filePath = fileInput.value;
+		var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+		if (!allowedExtensions.exec(filePath)) {
+			fileInput.value = '';
+			Swal.fire('Upload image only')
+			return false;
+		} else {
+			//Image preview
+			const img_data = fileInput.files[0]
+			const url = URL.createObjectURL(img_data)
+			imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+			const image = document.getElementById('image')
+			document.getElementById('image-box1').style.display = 'block'
+			document.getElementById('crop-btn1').style.display = 'block'
+			document.getElementById('confirm-btn1').style.display = 'none'
+
+			const cropper = new Cropper(image, {
+				autoCropArea: 1,
+				viewMode: 1,
+				scalable: false,
+				zoomable: false,
+				movable: false,
+				aspectRatio: 16 / 19,
+				//  preview: '.preview',
+				minCropBoxWidth: 100,
+				minCropBoxHeight: 100,
+			})
+			crop_btn.addEventListener('click', () => {
+				cropper.getCroppedCanvas().toBlob((blob) => {
+					let fileInputElement = document.getElementById('file1');
+					let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+					let container = new DataTransfer();
+
+					container.items.add(file);
+					const img = container.files[0]
+					var url = URL.createObjectURL(img)
+					fileInputElement.files = container.files;
+					document.getElementById('imgview1').src = url
+					document.getElementById('image-box1').style.display = 'none'
+					document.getElementById('crop-btn1').style.display = 'none'
+					document.getElementById('confirm-btn1').style.display = 'block'
+				}, 'image/webp', 0.5);
+			});
+		}
+	}
+
+</script>
+
+
+<script>
+	function validationaddressplace() {
+		var name = document.getElementById("inputName").value;
+		var brand = document.getElementById("brand").value;
+		var category = document.getElementById("categorys").value;
+		var subcategory = document.getElementById("subcategory").value;
+		var Price = document.getElementById("Price").value;
+		var stock = document.getElementById("inputStock").value;
+		var fabric = document.getElementById("fabric").value;
+		var packof = document.getElementById("inputpackof").value;
+		var color = document.getElementById("color").value;
+		var size = document.getElementById("size").value;
+		var image1 = document.getElementById("file1").value
+
+
+		if (name == "") {
+			document.getElementById("product").innerHTML =
+				"Please enter product name";
+			return false;
+		}
+		if (!isNaN(name)) {
+			document.getElementById("product").innerHTML =
+				" Enter the valid characters";
+			return false;
+		}
+		if (brand == "") {
+			document.getElementById("brandone").innerHTML =
+				" Please  select brand";
+			return false;
+		}
+		if (brand.length <= 2 || brand.length > 20) {
+			document.getElementById("brandone").innerHTML =
+				"Please enter more than 2 characters and shorter than 20 characters";
+			return false;
+		}
+		if (!isNaN(brand)) {
+			document.getElementById("brandone").innerHTML =
+				" Only enter characters";
+			return false;
+		}
+
+		if (category == "") {
+			document.getElementById("categoryone").innerHTML =
+				" Please select the catagory";
+			return false;
+		}
+
+		if (!isNaN(category)) {
+			document.getElementById("categoryone").innerHTML =
+				" Only enter characters";
+			return false;
+		}
+
+
+
+		if (subcategory == "") {
+			document.getElementById("subcategoryone").innerHTML =
+				" Please Enter Subcatagory";
+			return false;
+		}
+		if (!isNaN(subcategory)) {
+			document.getElementById("subcategoryone").innerHTML =
+				" Only enter characters";
+			return false;
+		}
+
+
+		if (Price == "") {
+			document.getElementById("Priceone").innerHTML =
+				" Please Enter price";
+			return false;
+		}
+		if (isNaN(Price)) {
+			document.getElementById("Priceone").innerHTML =
+				" Only enter characters";
+			return false;
+		}
+
+
+		if (stock == "") {
+			document.getElementById("stockone").innerHTML =
+				" Please Enter stock";
+			return false;
+		}
+
+		if (isNaN(stock)) {
+			document.getElementById("stockone").innerHTML =
+				" Only enter characters";
+			return false;
+		}
+
+
+
+		if (fabric == "") {
+			document.getElementById("fabrione").innerHTML =
+				"Please enter  fabric";
+			return false;
+		}
+		if (fabric.length <= 2 || fabric.length > 20) {
+			document.getElementById("fabrione").innerHTML =
+				" The length is to short ";
+			return false;
+		}
+		if (!isNaN(fabric)) {
+			document.getElementById("fabrione").innerHTML =
+				" Enter the valid characters";
+			return false;
+		}
+
+
+		if (packof == "") {
+			document.getElementById("packof").innerHTML =
+				"Please enter pack";
+			return false;
+		}
+		if (isNaN(packof)) {
+			document.getElementById("packof").innerHTML =
+				" Enter the valid characters";
+			return false;
+		}
+
+
+		if (color == "") {
+			document.getElementById("colorone").innerHTML =
+				"Please enter colour";
+			return false;
+		}
+		if (color.length <= 2 || color.length > 20) {
+			document.getElementById("colorone").innerHTML =
+				" The length is to short ";
+			return false;
+		}
+		if (!isNaN(color)) {
+			document.getElementById("colorone").innerHTML =
+				" Enter the valid characters";
+			return false;
+		}
+
+
+		if (size == "") {
+			document.getElementById("sizeone").innerHTML =
+				"Please enter the size";
+			return false;
+		}
+		if (isNaN(size)) {
+			document.getElementById("sizeone").innerHTML =
+				" Enter the valid characters";
+			return false;
+		}
+		if (image1 == "") {
+			document.getElementById("img1").innerHTML =
+				"Please uplod image";
+			return false;
+		}
+
+
+	}
+</script>
+
+<!--=================================
+  Brands Slider
+===================================== -->
+<section class="section-margin">
+	<h2 class="sr-only">Brand Slider</h2>
+	<div class="container">
+		<div class="brand-slider sb-slick-slider border-top border-bottom" data-slick-setting='{
+                                            "autoplay": true,
+                                            "autoplaySpeed": 8000,
+                                            "slidesToShow": 6
+                                            }' data-slick-responsive='[
+                {"breakpoint":992, "settings": {"slidesToShow": 4} },
+                {"breakpoint":768, "settings": {"slidesToShow": 3} },
+                {"breakpoint":575, "settings": {"slidesToShow": 3} },
+                {"breakpoint":480, "settings": {"slidesToShow": 2} },
+                {"breakpoint":320, "settings": {"slidesToShow": 1} }
+            ]'>
+			<div class="single-slide">
+				<img src="image/others/brand-1.jpg" alt="">
+			</div>
+			<div class="single-slide">
+				<img src="image/others/brand-2.jpg" alt="">
+			</div>
+			<div class="single-slide">
+				<img src="image/others/brand-3.jpg" alt="">
+			</div>
+			<div class="single-slide">
+				<img src="image/others/brand-4.jpg" alt="">
+			</div>
+			<div class="single-slide">
+				<img src="image/others/brand-5.jpg" alt="">
+			</div>
+			<div class="single-slide">
+				<img src="image/others/brand-6.jpg" alt="">
+			</div>
+			<div class="single-slide">
+				<img src="image/others/brand-1.jpg" alt="">
+			</div>
+			<div class="single-slide">
+				<img src="image/others/brand-2.jpg" alt="">
+			</div>
+		</div>
+	</div>
+</section>

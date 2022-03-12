@@ -1,0 +1,71 @@
+<div class="container mt-5 mb-5">
+
+    <div class="col-12 col-md-12 col-sm-12 col-lg-12" >
+        <div class=" alert-danger text-center" id="error" >
+            
+        </div>
+    </div>
+
+
+    {{#if errorMessage }}
+    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="alert alert-danger">
+            {{ errorMessage }}
+        </div>
+    </div>
+    {{/if }}
+    {{#if successMessage }}
+    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="alert alert-danger">
+            {{ successMessage }}
+        </div>
+    </div>
+    {{/if }}
+
+
+
+    <div class="row d-flex justify-content-center">
+        {{#each subscription_plans}}
+            <div class="col-sm-4 col-md-4 col-lg-4 d-flex justify-content-center">
+        <form class="sub_form" action="/subscription" onsubmit="return radioValidation()" method="post">
+
+
+
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-center mb-5">{{this.planTitle}}</h5>
+                        <p class="text-center"> {{this.planBrief}}</p>
+
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio" name="subscription_rate" value="{{this.monthlyRate}}" id="monthly" checked>
+                            <label class="form-check-label mx-5" for="flexRadioDefault2">
+                                <p>Monthly &nbsp &nbsp- &nbsp &nbsp ₹ {{this.monthlyRate}}</p>
+                            </label>
+                        </div>
+
+                        <input type="text" value="{{this._id}}" name="PlanId" hidden>
+
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio" name="subscription_rate" value="{{this.yearlyRate}}" id="yearly">
+                            <label class="form-check-label mx-5" for="flexRadioDefault2">
+                                <p>Yearly &nbsp &nbsp- &nbsp &nbsp ₹ {{this.yearlyRate}}</p>
+                            </label>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" id="forRadio"  class="btn btn-light subscriptionPlan_form" style="width: 150px; border-radius: 15%;">
+                                Activate Plan</button>
+                        </div>
+
+                          <p id="output"></p>
+
+                    </div>
+                </div>
+
+        </form>
+            </div>
+        {{/each}}
+    </div>
+
+</div>
+

@@ -1,0 +1,295 @@
+
+{{!-- <div class="container row d-flex align-items-center justify-content-center mt-5 mb-5" 
+style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; width:50%;">
+
+        {{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger text-center">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-success text-center">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}  
+ {{#each searchedProducts}}
+
+ <div class="container row d-flex align-items-center justify-content-center mt-5 mb-5" 
+style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; width:50%;">
+
+    <div class="card" style="width: 18rem;">
+
+                    <div class="single-slide">
+                        <div class="product-card">
+                            
+                            <div class="product-card--body">
+                                <div class="card-image mt-5">
+                                    <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                    <div class="hover-contents">
+                                        <a href="/product-details/{{this._id}}" class="hover-image">
+                                            <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                        </a>
+                                        <div class="hover-btns">
+                                            <button onclick="addToCart('{{this._id}}')" type="button" class="single-btn">
+                                                <i class="fas fa-shopping-basket"></i>
+                                            </button>
+                                            <a href="/wishlist" class="single-btn">
+                                                <i class="fas fa-heart"></i>
+                                            </a>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+
+                            </div>
+                        </div>
+                    </div>
+
+                            
+
+
+  <div class="card-body text-center">
+      <div class="product-header">
+    <h5 class="card-title" style="font-size: .8rem;">
+        <a href="#" class="author">
+                                   {{this.book_author}}
+                                </a>
+    </h5>
+    <p class="card-text">
+        <h3  style="font-size: 1rem; font-weight: bold; height: 80px;"><a href="/product-details/{{this._id}}">
+        {{this.book_name}}
+                                  </a></h3>
+    </p>
+    <a href="/cart" class="btn btn-primary">Goto Cart</a>
+  </div>
+  </div>
+
+</div>
+</div>
+ {{/each}}
+
+</div>                 
+                            </div> --}}
+
+
+
+
+ 
+<div class="container emp-profile text-center mb-5">
+            
+                <div class="row">
+
+                    <div class="row d-flex justify-content-center">
+                
+
+                {{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                
+                   
+
+                    <div class="col-md-12 d-flex justify-content-center mt-5">
+                        <div class="tab-content profile-tab shadow p-3 mb-5 bg-white rounded" id="myTabContent">
+                            {{#each searchedProducts}}
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+               
+                                 <div class="row">
+                                            <div class="col-md-6">
+                                                
+
+                    <div class="card" style="width: 18rem;">
+
+                    <div class="single-slide">
+                        <div class="product-card">
+                            
+                            <div class="product-card--body">
+                                <div class="card-image mt-5">
+                                    <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                    <div class="hover-contents">
+                                        <a href="/product-details/{{this._id}}" class="hover-image">
+                                            <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                        </a>
+                                        <div class="hover-btns">
+                                            <button onclick="addToCart('{{this._id}}')" type="button" class="single-btn">
+                                                <i class="fas fa-shopping-basket"></i>
+                                            </button>
+                                            <a href="/wishlist" class="single-btn">
+                                                <i class="fas fa-heart"></i>
+                                            </a>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+
+                            </div>
+                        </div>
+                    </div>
+
+                            
+
+
+  <div class="card-body text-center">
+      <div class="product-header">
+    <h5 class="card-title" style="font-size: .8rem;">
+        <a href="#" class="author">
+                                   {{this.book_author}}
+                                </a>
+    </h5>
+    <p class="card-text">
+        <h3  style="font-size: 1rem; font-weight: bold; height: 80px;"><a href="/product-details/{{this._id}}">
+        {{this.book_name}}
+                                  </a></h3>
+    </p>
+    <a href="/cart" class="btn btn-primary">Goto Cart</a>
+  </div>
+  </div>
+
+</div>
+
+
+                                            </div>
+
+                                        </div>
+
+                                                                       
+                            </div>
+
+                             {{/each}}       
+                        
+                    </div>
+                </div>
+            </div>           
+        </div>
+
+                           <style>
+
+
+.emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.profile-head h5{
+    color: #333;
+}
+.profile-head h6{
+    color: #0062cc;
+}
+.profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+}
+.proile-rating{
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+}
+.proile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+}
+.profile-work{
+    padding: 14%;
+    margin-top: -15%;
+}
+.profile-work p{
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+}
+.profile-work a{
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+}
+.profile-work ul{
+    list-style: none;
+}
+.profile-tab label{
+    font-weight: 600;
+}
+.profile-tab p{
+    font-weight: 600;
+    color: #0062cc;
+}
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+
+    color: black
+}
+
+</style>
+
+                 

@@ -1,0 +1,532 @@
+<style>
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+</style>
+		
+		<main id="content" class="page-section inner-page-sec-padding-bottom space-db--20">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<!-- Checkout Form s-->
+<div class="checkout-form">
+							<div class="row row-40">
+								<div class="col-12">
+									<h1 class="quick-title">Edit Profile Details</h1>
+									<!-- Slide Down Trigger  -->
+									<div class="checkout-quick-box">
+										<p><i class="far fa-sticky-note"></i>Returning customer? <a href="javascript:"
+												class="slide-trigger" data-target="#quick-login">Click
+												here to login</a></p>
+									</div>
+									<!-- Slide Down Blox ==> Login Box  -->
+									<div class="checkout-slidedown-box" id="quick-login">
+										<form action="">
+											<div class="quick-login-form">
+												<p>If you have shopped with us before, please enter your details in the
+													boxes below. If you are a new
+													customer
+													please
+													proceed to the Billing & Shipping section.</p>
+												<div class="form-group">
+													<label for="quick-user">Username or email *</label>
+													<input type="text" placeholder="" id="quick-user">
+												</div>
+												<div class="form-group">
+													<label for="quick-pass">Password *</label>
+													<input type="text" placeholder="" id="quick-pass">
+												</div>
+												<div class="form-group">
+													<div class="d-flex align-items-center flex-wrap">
+														<a href="#" class="btn btn-outlined me-3">Login</a>
+														<div class="d-inline-flex align-items-center">
+															<input type="checkbox" id="accept_terms" class="mb-0 mx-1">
+															<label for="accept_terms" class="mb-0">I’ve read and accept
+																the terms &amp; conditions</label>
+														</div>
+													</div>
+													<p><a href="javascript:" class="pass-lost mt-3">Lost your
+															password?</a></p>
+												</div>
+											</div>
+										</form>
+									</div>
+									<!-- Slide Down Trigger  -->
+									{{!-- <div class="checkout-quick-box">
+										<p><i class="far fa-sticky-note"></i>Have a coupon? <a href="javascript:"
+												class="slide-trigger" data-target="#quick-cupon">
+												Click here to enter your code</a></p>
+									</div>
+									<!-- Slide Down Blox ==> Cupon Box -->
+									<div class="checkout-slidedown-box" id="quick-cupon">
+										<form action="https://template.hasthemes.com/pustok/pustok/">
+											<div class="checkout_coupon">
+												<input type="text" class="mb-0" placeholder="Coupon Code">
+												<a href="#" class="btn btn-outlined">Apply coupon</a>
+											</div>
+										</form>
+									</div> --}}
+								</div>
+								{{!-- {{#each addressDetails}} --}}
+                                <form action="/editProfile" method="post" enctype="multipart/form-data">
+								{{!-- <input type="text" name="AddressId" value="{{user.id}}" hidden> --}}
+								<div class="col-lg-7 mb--20">
+									<!-- Billing Address -->
+									<div id="billing-form" class="mb-40">
+										<h4 class="checkout-title">PROFILE</h4>
+										<div class="row">
+											<div class="col-md-6 col-12 mb--20">
+												<label>Name*</label>
+												<input name="user_name" type="text" value="{{user.user_name}}" placeholder="First Name">
+											</div>
+                      
+											
+											
+											<div class="col-md-6 col-12 mb--20">
+												<label>Email Address*</label>
+												<input name="user_email" type="email" value="{{user.user_email}}" placeholder="Email Address">
+											</div>
+											<div class="col-md-6 col-12 mb--20">
+												<label>Phone no*</label>
+												<input name="user_number" type="text" value="{{user.user_number}}" placeholder="Phone number">
+											</div>
+
+
+                                            <div class="col-md-6 col-12 mb--20">
+												   <label for="inputDistrict">State</label>
+                                                        <select id="inputState" name="user_state" value="{{user.user_state}}"
+                                                            style="width: 270px; height: 50px;"
+                                                            class="form-control select">
+
+                                                            <option value="">{{user.user_state}} </option>
+                                                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                            <option value="Assam">Assam</option>
+                                                            <option value="Bihar">Bihar</option>
+                                                            <option value="Chhattisgarh">Chhattisgarh</option>
+                                                            <option value="Goa">Goa</option>
+                                                            <option value="Gujarat">Gujarat</option>
+                                                            <option value="Haryana">Haryana</option>
+                                                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                            <option value="Jharkhand">Jharkhand</option>
+                                                            <option value="Karnataka">Karnataka</option>
+                                                            <option value="Kerala">Kerala</option>
+                                                            <option value="Madya Pradesh">Madya Pradesh</option>
+                                                            <option value="Maharashtra">Maharashtra</option>
+                                                            <option value="Manipur">Manipur</option>
+                                                            <option value="Meghalaya">Meghalaya</option>
+                                                            <option value="Mizoram">Mizoram</option>
+                                                            <option value="Nagaland">Nagaland</option>
+                                                            <option value="Orissa">Orissa</option>
+                                                            <option value="Punjab">Punjab</option>
+                                                            <option value="Rajasthan">Rajasthan</option>
+                                                            <option value="Sikkim">Sikkim</option>
+                                                            <option value="Tamil Nadu">Tamil Nadu</option>
+                                                            <option value="Telangana">Telangana</option>
+                                                            <option value="Tripura">Tripura</option>
+                                                            <option value="Uttaranchal">Uttaranchal</option>
+                                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                            <option value="West Bengal">West Bengal</option>
+                                                            <option value="Andra Pradesh">Andra Pradesh</option>
+                                                            <option disabled style="background-color:#aaa; color:#fff">
+                                                                UNION
+                                                                Territories</option>
+                                                            <option value="Andaman and Nicobar Islands">Andaman and
+                                                                Nicobar
+                                                                Islands</option>
+                                                            <option value="Chandigarh">Chandigarh</option>
+                                                            <option value="Dadar and Nagar Haveli">Dadar and Nagar
+                                                                Haveli
+                                                            </option>
+                                                            <option value="Daman and Diu">Daman and Diu</option>
+                                                            <option value="Delhi">Delhi</option>
+                                                            <option value="Lakshadeep">Lakshadeep</option>
+                                                            <option value="Pondicherry">Pondicherry</option>
+
+
+
+                                                        </select>
+                                                        <small class="text-danger" id="State"></small>
+											</div>
+											
+
+											 <div class="row">
+                  <div id="image-box1" style="width: 300px; height: 300px; display: none;">
+                  </div>
+                  <div>
+                    <button class="btn btn-primary mt-3" type="button" style="display: none;"
+                      id="crop-btn1">Done</button>
+                  </div>
+
+
+<div class="col-md-6 col-12 mb--20">
+
+<label for="">GENDER</label>
+                   <select class="form-select" aria-label="Default select example" name="user_gender">
+  <option selected>
+   {{user.user_gender}}
+  </option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+  <option value="Other">Other</option>
+</select>
+
+</div>
+
+
+{{!-- <div class="col-md-6 col-12 mb--20">
+
+<div class="md-form md-outline input-with-post-icon datepicker" id="customDays">
+  <input placeholder="Select date" type="text" id="Customization" class="form-control">
+  <label for="Customization">Try me...</label>
+  <i class="fas fa-calendar input-prefix" tabindex=0></i>
+</div>
+</div> --}}
+
+<div class="col-md-6 col-12 mb--20">
+<div class="bootstrap-iso">
+ <div class="container-fluid">
+  <div class="row">
+ 
+
+    <!-- Form code begins -->
+   
+      <div class="form-group"> <!-- Date input -->
+        <label class="control-label" for="date">Date Of Birth</label>
+        <input class="form-control" id="date" name="user_dob" placeholder="MM/DD/YYY" type="date"/>
+      </div>
+      
+      
+     
+     <!-- Form code ends --> 
+
+    </div>
+  </div>    
+ </div>
+ </div>
+
+											<div class=" col-md-12 col-12 mb--20">
+                    <label for="">PROFILE IMAGE </label>
+                    <img src="/book-images/{{book._id}}1.jpeg" alt="" style="width: 100px; height:auto" id="imgview1">
+                    <input type="file" name="image1" id="file1" class="form-control"
+                      onchange="return fileValidation1()">
+                      <p id="image1" class="text text-danger"></p>
+     
+                  </div>
+
+                  
+                  
+
+										
+										
+									</div>
+                                    </div>
+                                    <div class="d-flex justify-content-center mt-5">
+                                    <button  type="submit" id="confirm-btn1" class="btn btn-success "> Edit</button>
+                                    </div>
+                                    </div>
+                                    </form>
+									{{!-- {{/each}} --}}
+
+                                    </div>
+										
+										</div>
+									</div>
+                                    </div>
+                                    </main>
+									
+
+
+<script>
+
+	  //Cropper js function
+
+  function fileValidation1() {
+  
+    const imagebox = document.getElementById('image-box1')
+    const crop_btn = document.getElementById('crop-btn1')
+    var fileInput = document.getElementById('file1');
+
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      fileInput.value = '';
+      Swal.fire('Upload image only') 
+      return false;
+    } else {
+      //Image preview
+      const img_data = fileInput.files[0]
+      const url = URL.createObjectURL(img_data)
+      imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+      const image = document.getElementById('image')
+      document.getElementById('image-box1').style.display = 'block'
+      document.getElementById('crop-btn1').style.display = 'block'
+      document.getElementById('confirm-btn1').style.display = 'none'
+
+      const cropper = new Cropper(image, {
+        autoCropArea: 1,
+        viewMode: 1,
+        scalable: false,
+        zoomable: false,
+        movable: false,
+        aspectRatio: 16 / 19,
+        //  preview: '.preview',
+        minCropBoxWidth: 100,
+        minCropBoxHeight: 100,
+      })
+      crop_btn.addEventListener('click', () => {
+        cropper.getCroppedCanvas().toBlob((blob) => {
+          let fileInputElement = document.getElementById('file1');
+          let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+          let container = new DataTransfer();
+
+          container.items.add(file);
+          const img = container.files[0]
+          var url = URL.createObjectURL(img)
+          fileInputElement.files = container.files;
+          document.getElementById('imgview1').src = url
+          document.getElementById('image-box1').style.display = 'none'
+          document.getElementById('crop-btn1').style.display = 'none'
+          document.getElementById('confirm-btn1').style.display = 'block'
+        }, 'image/webp', 0.5);
+      });
+    }
+  }
+
+</script>
+
+{{!-- <script src=" https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script> --}}
+
+<script>
+  function validationaddressplace() {
+    var name = document.getElementById("inputName").value;
+    var brand = document.getElementById("brand").value;
+    var category = document.getElementById("categorys").value;
+    var subcategory = document.getElementById("subcategory").value;
+    var Price = document.getElementById("Price").value;
+    var stock = document.getElementById("inputStock").value;
+    var fabric = document.getElementById("fabric").value;
+    var packof = document.getElementById("inputpackof").value;
+    var color = document.getElementById("color").value;
+    var size = document.getElementById("size").value;
+    var image1=document.getElementById("file1").value
+    var image2=document.getElementById("file2").value
+    var image3=document.getElementById("file3").value
+    var image4=document.getElementById("file4").value
+
+    if (name == "") {
+      document.getElementById("product").innerHTML =
+        "Please enter product name";
+      return false;
+    }
+    if (!isNaN(name)) {
+      document.getElementById("product").innerHTML =
+        " Enter the valid characters";
+      return false;
+    }
+    if (brand == "") {
+      document.getElementById("brandone").innerHTML =
+        " Please  select brand";
+      return false;
+    }
+    if (brand.length <= 2 || brand.length > 20) {
+      document.getElementById("brandone").innerHTML =
+        "Please enter more than 2 characters and shorter than 20 characters";
+      return false;
+    }
+    if (!isNaN(brand)) {
+      document.getElementById("brandone").innerHTML =
+        " Only enter characters";
+      return false;
+    }
+
+    if (category == "") {
+      document.getElementById("categoryone").innerHTML =
+        " Please select the catagory";
+      return false;
+    }
+   
+    if (!isNaN(category)) {
+      document.getElementById("categoryone").innerHTML =
+        " Only enter characters";
+      return false;
+    }
+
+
+
+    if (subcategory == "") {
+      document.getElementById("subcategoryone").innerHTML =
+        " Please Enter Subcatagory";
+      return false;
+    }
+    if (!isNaN(subcategory)) {
+      document.getElementById("subcategoryone").innerHTML =
+        " Only enter characters";
+      return false;
+    }
+
+
+    if (Price == "") {
+      document.getElementById("Priceone").innerHTML =
+        " Please Enter price";
+      return false;
+    }
+    if (isNaN(Price)) {
+      document.getElementById("Priceone").innerHTML =
+        " Only enter characters";
+      return false;
+    }
+
+
+    if (stock == "") {
+      document.getElementById("stockone").innerHTML =
+        " Please Enter stock";
+      return false;
+    }
+    
+    if (isNaN(stock)) {
+      document.getElementById("stockone").innerHTML =
+        " Only enter characters";
+      return false;
+    }
+
+
+
+    if (fabric == "") {
+      document.getElementById("fabrione").innerHTML =
+        "Please enter  fabric";
+      return false;
+    }
+    if (fabric.length <= 2 || fabric.length > 20) {
+      document.getElementById("fabrione").innerHTML =
+        " The length is to short ";
+      return false;
+    }
+    if (!isNaN(fabric)) {
+      document.getElementById("fabrione").innerHTML =
+        " Enter the valid characters";
+      return false;
+    }
+
+
+    if (packof == "") {
+      document.getElementById("packof").innerHTML =
+        "Please enter pack";
+      return false;
+    }
+    if (isNaN(packof)) {
+      document.getElementById("packof").innerHTML =
+        " Enter the valid characters";
+      return false;
+    }
+
+
+    if (color == "") {
+      document.getElementById("colorone").innerHTML =
+        "Please enter colour";
+      return false;
+    }
+    if (color.length <= 2 || color.length > 20) {
+      document.getElementById("colorone").innerHTML =
+        " The length is to short ";
+      return false;
+    }
+    if (!isNaN(color)) {
+      document.getElementById("colorone").innerHTML =
+        " Enter the valid characters";
+      return false;
+    }
+
+
+    if (size == "") {
+      document.getElementById("sizeone").innerHTML =
+        "Please enter the size";
+      return false;
+    }
+    if (isNaN(size)) {
+      document.getElementById("sizeone").innerHTML =
+        " Enter the valid characters";
+      return false;
+    }
+        if (image1 == "") {
+      document.getElementById("img1").innerHTML =
+        "Please uplod image";
+      return false;
+    }
+         if (image2 == "") {
+      document.getElementById("img2").innerHTML =
+        "Please uplod image";
+      return false;
+    }
+         if (image3 == "") {
+      document.getElementById("img3").innerHTML =
+        "Please uplod image";
+      return false;
+    }
+         if (image4 == "") {
+      document.getElementById("img4").innerHTML =
+        "Please uplod image";
+      return false;
+    }
+
+  }
+</script>
+

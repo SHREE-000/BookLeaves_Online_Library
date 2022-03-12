@@ -1,0 +1,51 @@
+<form action="/a-product/add-coupon" method="post">
+
+<div class="container row d-flex align-items-center justify-content-center mt-5 mb-5"
+    style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; width:50%;">
+
+<div class="m-5 text-center c">
+    <h1>Add Coupons</h1>
+</div>
+
+<div class="mt-5 text-center">
+<label for="category">ENTER COUPON CODE &nbsp;</label>
+                     <input type="text" name="coupon_code" class="form-control" style="width: 50%;" id="exampleInputEmail1"
+          aria-describedby="emailHelp" placeholder="CODE">
+                    </div>
+
+<div class="mt-5 mb-5 text-center">
+ <label for="category">SELECT PLAN &nbsp;</label>
+                    <select name="plan" id="categorys" class="custom-select p-2 w-50">
+                      <option value="" selected>Choose A Plan</option>
+                      <p id="categoryone" class="text text-danger"></p>
+                      {{#each plan}}
+                      <option class="text-dark" value="{{this._id}}">{{this.planTitle}}</option>
+                      {{/each}}
+                       <p id="categoryone" class="text text-danger"></p>
+                    </select> 
+                    </div>
+
+                    <div class="mb-5 text-center">
+<label for="category">VALIDITY &nbsp;</label>
+                     <input type="date" name="validity" class="form-control" style="width: 50%;" id="exampleInputEmail1"
+          aria-describedby="emailHelp" placeholder="CODE">
+                    </div>
+
+                    
+
+                    <div class="mb-5 text-center">
+<label for="category">ENTER OFF PERCENTAGE (%) &nbsp;</label>
+                     <input type="number" name="off_percentage" class="form-control" style="width: 50%;" id="exampleInputEmail1"
+          aria-describedby="emailHelp" placeholder="PERCENTAGE">
+                    </div>
+
+<div class="text-center m-5">
+    <button class="btn btn-success" type="submit">Add Coupon</button>
+</div>
+
+</div>
+
+
+
+</form>
+

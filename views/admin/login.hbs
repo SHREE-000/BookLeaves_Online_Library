@@ -1,0 +1,41 @@
+<section class="login">
+<div class="container d-flex align-items-center justify-content-center " style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+<form class="m-5" id="editadminform" method="post" action="/a-login">
+
+  {{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-success">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+  <div class="avc" >
+    <label for="exampleInputEmail1" class="form-label fs-5 font-weight-bold text-success">Email address</label>
+    <input type="email" name="admin_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">Never share this email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-success">Password</label>
+    <input type="password" name="admin_password" class="form-control" id="exampleInputPassword">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+
+  <button type="submit" onclick="validateEditAdminForm()" class="btn btn-success">Login</button>
+
+  </form>
+
+
+</div>
+</section>

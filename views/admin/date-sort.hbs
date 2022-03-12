@@ -1,0 +1,93 @@
+<div class="w-100 bg-secondary mt-5" style="height: 100px;">
+    <h1 class="text-center fw-bold text-white m-5">SALES</h1>
+</div>
+
+{{#if errorMessage }}
+<div class="col-12 col-md-12 col-sm-12 col-lg-12">
+    <div class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+</div>
+{{/if }}
+
+{{#if successMessage }}
+<div class="col-12 col-md-12 col-sm-12 col-lg-12">
+    <div class="alert alert-danger">
+        {{ successMessage }}
+    </div>
+</div>
+{{/if }}
+
+<form action="/a-product/sale-view" method="post">
+
+    <div class="row d-flex justify-content-center ml-5 mt-5 mb-5">
+        <div class="col-md-3 text-center">
+            <label for="">Start date</label>
+            <input type="date" class="border form-control text-center" name="startdate" id="startdate">
+        </div>
+        <div class="col-md-3 text-center">
+            <label for="">End date</label>
+            <input type="date" class="border form-control text-center" name="enddate" id="enddate">
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </div>
+
+</form>
+
+
+<table id="tblData" class="table table-striped table-bordered mt-5 text-wrap container text-center" style="width:100%">
+    <thead>
+        <tr>
+            <th>SI NO</th>
+            <th>State</th>
+            <th>Total Number Of Subscriptions</th>
+            <th>Total Amount Collected Through Subscription</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each allsalesreport}}
+        <tr>
+            <td class="index"></td>
+            <td>{{this._id}}</td>
+            <td>{{this.count}}</td>
+            <td>{{this.sum}}</td>
+        </tr>
+        {{/each}}
+        </tfoot>
+</table>
+
+<div class="text-center mt-5">
+    <button type="submit" onclick="exportTableToExcel('tblData')" id="myTable" class="btn btn-warning">Download As
+        Excel</button>
+    <button class="btn btn-info" id="data-print" onclick="return print()">Download As PDF</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

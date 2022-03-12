@@ -1,0 +1,58 @@
+<div class="container row d-flex align-items-center justify-content-center mt-5 mb-5"
+    style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; width:50%;">
+
+{{#if errorMessage }}
+                                    <div class="m-5 col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger text-center">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="m-5 col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger text-center">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+<div class="m-5 text-center ">
+    <h1>Add & Delete Coupons</h1>
+</div>
+
+<div class="  m-5 text-center">
+    <a class="btn btn-success" type="button" href="/a-product/add-coupon"> Add New Coupon</a>
+    
+</div>
+
+
+{{#each coupon}}
+<div class="row container row d-flex align-items-center justify-content-center mt-5 mb-5"
+    style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+    rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+    rgba(0, 0, 0, 0.09) 0px -3px 5px; width:50%;">
+<div class="text-center m-5">
+<h6 class="fw-bold">Coupon Code</h6>
+{{this.coupon_code}}
+</div>
+
+<div class="text-center">
+<h6 class="fw-bold">Off Percentage </h6>
+{{this.off_percentage}}%
+</div>
+
+<div class="text-center m-5">
+<h6 class="fw-bold">validity Till </h6>
+{{this.validity}}
+</div>
+
+<div class="text-center mb-5">
+    <a href="/a-product/delete-coupon/{{this._id}}" class="btn btn-danger">Delete Coupon</a>
+</div>
+
+</div>
+{{/each}}
+
+
+</div>

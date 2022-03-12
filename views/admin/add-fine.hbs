@@ -1,0 +1,49 @@
+<section class="login" style="height : 65vmin">
+
+     {{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger text-center">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger text-center">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+<div class="container d-flex align-items-center justify-content-center"
+ style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+ rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+                              
+<form class="m-5 row" id="" method="post" action="/a-product/add-fineAmount-Premium">
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-center text-dark">Edit Fine Amount For Premium Books</label>
+    <input type="text" name="fine_amount" class="form-control" id="exampleInputPassword">
+  </div>
+  
+
+  <button type="submit" onclick="" class="btn btn-dark text-center">Edit</button>
+ 
+</form>    
+
+<form class="m-5 row" id="" method="post" action="/a-product/add-fineAmount-nonPremium">
+ 
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 text-center font-weight-bold text-dark">Edit Fine Amount For Non Premium Books</label>
+    <input type="text" name="fine_amount" class="form-control" id="exampleInputPassword">
+  </div>
+  
+
+  <button type="submit" onclick="" class="btn btn-dark text-center">Edit</button>
+ 
+</form> 
+
+</div>
+</section>
+

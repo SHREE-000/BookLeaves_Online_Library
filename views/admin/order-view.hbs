@@ -1,0 +1,120 @@
+<div class="w-100 bg-secondary mt-5" style="height: 50px;">
+<h1 class="text-center fw-bold text-white m-5">ORDERS</h1>
+</div>
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+<div id="example_wrapper" class="dataTables_wrapper mt-5">
+    {{!-- <div class="dataTables_length" id="example_length"> --}}
+        {{!-- <label>Show <select name="example_length" aria-controls="example" class="">
+            <option value="10">10</option><option value="25">25</option><option value="50">50</option>
+            <option value="100">100</option></select> entries</label></div>
+            <div id="example_filter" class="dataTables_filter">
+                <label>Search:<input type="search" class="" placeholder="" aria-controls="example"></label></div> --}}
+                <table id="example" class="display dataTable" style="width:100%" aria-describedby="example_info">
+        <thead>
+            <tr>
+                
+                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" 
+            rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+            style="width: 120px;">Order Id</th>
+            
+            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" 
+            colspan="1" aria-label="Position: activate to sort column ascending" 
+            style="width: 250px;">Ordered Book</th>
+
+             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" 
+            aria-label="Office: activate to sort column ascending"
+             style="width: 100px;">Ordered Date</th>
+
+             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" 
+            aria-label="Office: activate to sort column ascending"
+             style="width: 150px;">User Name</th>
+
+              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" 
+            colspan="1" aria-label="Position: activate to sort column ascending" 
+            style="width:  65px;">Existing Plan</th>
+             
+             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+              aria-label="Age: activate to sort column ascending" 
+              style="width: 65px;">Ordered Status</th>
+
+              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+              aria-label="Age: activate to sort column ascending" 
+              style="width: 65px;">Shipping Payment method</th>
+
+
+              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+               aria-label="Start date: activate to sort column ascending" 
+               style="width: 100px;">Action</th>
+
+
+               
+               
+               </tr>
+        </thead>
+        <tbody>   
+
+            {{#each orders}} 
+             
+             
+        <tr class="odd">
+                <td class="sorting_1">{{this._id}}</td>
+                <td>{{this.book.book_name}}</td>
+                <td>{{this.date}}</td>
+
+
+                <td>{{deliveryDetails.name}}</td>
+                {{#if this.plan}}
+                <td>{{this.plan}}</td>
+                {{else}}
+                <td>No Plan activated</td>
+                {{/if}}
+               
+                
+                <td>{{this.status}}</td>
+
+                <td>{{this.payment}}</td>
+
+
+                <td>
+
+                    <div class="dropdown ">
+  <button class="btn btn-primary dropdown-toggle w-50" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Take Order Action 
+  </button>
+  <div class="dropdown-menu text-center bg-dark " aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item  bg-secondary text-white fw-bold bg-secondary " href="/a-product/packed-order/{{this.userOriginalId}}/{{this._id}}">Packed</a>
+    <a class="dropdown-item bg-secondary  text-white fw-bold bg-secondary " href="/a-product/shipped-order/{{this.userOriginalId}}/{{this._id}}">Shipped</a>
+    <a class="dropdown-item bg-secondary  text-white fw-bold bg-secondary " href="/a-product/cancelled-order/{{this.userOriginalId}}/{{this._id}}">Cancelled</a>
+    <a class="dropdown-item  bg-secondary text-white fw-bold bg-secondary " href="/a-product/delivered-order/{{this.userOriginalId}}/{{this._id}}">Delivered</a>
+  </div>
+</div>
+
+                </td>
+
+
+            </tr>
+
+            {{/each}}
+            
+            </tbody>
+        
+    </table>
+    </div>
+   
+

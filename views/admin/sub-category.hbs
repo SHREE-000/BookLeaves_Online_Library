@@ -1,0 +1,110 @@
+
+<section class="login">
+<div class="container d-flex align-items-center justify-content-center mt-5 mb-5" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+<form class="m-5" id="" method="post" action="/a-product/sub-category">
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                 {{!-- {{#each category}} 
+                                <input type="text" name="category_id" value="{{this._id}}" hidden>
+                                {{/each}} --}}
+                                 
+                                <label class="form-label fs-5 font-weight-bold text-dark" for="category">Select Category</label>
+                    <select name="book_category" id="categorys" class="custom-select p-2">
+                      <option value="" selected>Choose a Category</option>
+                      <p id="categoryone" class="text text-danger"></p>
+                      {{#each category}}                   
+                      <option class="text-dark" value="{{this.category}}">{{this.category}}</option>
+                      {{/each}}
+                       <p id="categoryone" class="text text-danger"></p>
+                    </select> 
+
+  
+  <div class="mb-3 mt-5">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark">Add  Sub-Category</label>
+    <input type="text" name="book_sub_category" class="form-control" id="exampleInputPassword">
+  </div>
+  
+<div class="d-flex justify-content-center align-items-center">
+  <button type="submit" onclick="()" class="btn btn-dark">Add</button>
+  </div>
+
+  </form>
+
+</div>
+</section>
+
+
+<section class="login">
+<div class="container d-flex align-items-center justify-content-center mt-5 mb-5" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+<form class="m-5" id="" method="post" onload="resetSelection()" action="/a-product/delete-sub-category">
+
+{{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                                {{#if successMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ successMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+                            
+
+ 
+  <div class="text-center">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-dark mb-5">Delete Sub-Category</label>
+  </div>
+             <div class="container  row ">
+
+ <div class="d-flex justify-content-center align-items-center">
+                    <select name="book_category" id="categorys" size="1" class="custom-select p-2 mb-5"
+                    onchange="getSubCatogory(this.value)" style="width : 50%">
+                      <option value="" selected>Choose a Category</option>
+                      <p id="categoryone" class="text text-danger"></p>
+                      {{#each category}}                   
+                      <option class="text-dark" value="{{this.category}}">{{this.category}}</option>
+                      {{/each}}
+                       <p id="categoryone" class="text text-danger"></p>
+                    </select> 
+                    </div> 
+
+ <div class="d-flex justify-content-center align-items-center">
+                    <select name="book_sub_category" id="subcategorys" size="1" class="custom-select p-2" style="width : 50%">
+                      <option value=""  selected>Choose a Sub Category</option>
+                      <p id="categoryone" class="text text-danger"></p>
+                      {{!-- {{#each category }}
+                      <option class="text-dark" value="{{this.book_sub_category}}">{{this.book_sub_category}}</option>
+                      {{/each}}
+                       <p id="categoryone" class="text text-danger"></p> --}}
+                    </select>
+                    </div> 
+                 
+  <div class="d-flex justify-content-center align-items-center">
+
+  <button type="submit" onclick="displaySelected()" class=" m-5 btn btn-danger">Delete</button>
+</div>
+</div>
+  </form>
+</div>
+</section>

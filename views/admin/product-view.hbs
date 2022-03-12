@@ -1,0 +1,49 @@
+<div class="w-100 bg-secondary mt-5" style="height: 50px; width: 50%">
+    <h1 class="text-center align-middle fw-bold text-white m-5">PRODUCT DETAILS</h1>
+</div>
+
+ <div class="column  m-5 float-right" >
+<a href="/a-product/add-product" class="btn btn-success " style="flex-basis: max-content;">Add New Book</a>
+</div>
+
+   <table id="example" class="table table-striped text-wrap" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Number of Books</th>
+      <th scope="col">Author Name</th>
+      <th scope="col">Language</th>
+      <th scope="col">Category</th>
+      <th scope="col">Sub Category</th>
+      <th scope="col">Book Description</th>
+      <th scope="col">Check Premium</th>
+      <th scope="col">Image</th>
+      <th></th>
+      <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {{#each book}}
+    <tr>
+      <td scope="row" class="index"></td>
+      <td>{{this.book_name}}</td>
+      <td>{{this.number_of_books}}</td>
+      <td>{{this.book_author}}</td>
+      <td>{{this.book_language}}</td>
+      <td>{{this.book_category}}</td>
+      <td>{{this.book_sub_category}}</td>
+      <td id="book_description">{{this.book_description}}</td>
+      <td>{{this.book_checkPremium}}</td>
+      <td> <img style="width: 50px; height: 50px;" src="/book-images/{{this._id}}1.jpeg" alt=""> </td>
+      <td> <a href="/a-product/product-edit/{{this._id}}" class="btn btn-primary" >Edit </a> </td>
+      <td> <a href="/a-product/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Data ({{this.book_name}}) will delete permanently, are you sure ?')" >Delete </a> </td>
+    </tr>
+    {{/each}}
+            
+        </tbody>
+        
+    </table>
+   
+  

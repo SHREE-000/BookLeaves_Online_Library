@@ -1,0 +1,38 @@
+<div class="otp">
+  <div class="container d-flex align-items-center justify-content-center mt-5 mb-5"
+    style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; width:50%;">
+
+    <form class="m-5 container d-flex align-items-center justify-content-center" id="adminOTP" method="post"
+      action="/a-otp">
+
+      {{#if errorMessage }}
+      <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+      </div>
+      {{/if }}
+
+      <div class="form-group">
+        <h3 style="text-align: center; align-items-center justify-content-center; color:green"> <strong> Verification
+            Required </strong></h3>
+        <h6 class="mt-5 mb-5" style="text-align: center; width: 50%;"> To continue, complete this verification step.
+          We've sent an OTP to the mobile number +91{{user.user_number}}. Please enter it below to complete
+          verification.</h6>
+        <input type="number" name="admin_otp" class="form-control" style="width: 50%;" id="exampleInputEmail1"
+          aria-describedby="emailHelp" placeholder="Enter OTP">
+
+        <button class="text-danger font-italic btn_resend" style="display: none;">Resend OTP</button>
+        <div class="font-weight-bold text-center mt-5">
+          Time Left ::
+          <p id="demo"></p>
+        </div>
+
+      </div>
+
+      <button type="submit" onclick="validateOtpForm()" class="btn btn-success btn_verify">continue</button>
+    </form>
+
+  </div>
+
+</div>

@@ -1,0 +1,121 @@
+<section class="login text-center">
+<div class="container d-flex align-items-center justify-content-center " style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+<form class="m-5" id="userform" method="POST" action="/u-signup">
+
+  {{#if errorMessage }}
+                                    <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                        <div class="alert alert-danger">
+                                            {{ errorMessage }}
+                                        </div>
+                                    </div>
+                                {{/if }}
+
+  <div class="avc" >
+    <label for="exampleInputEmail1" class="form-label fs-5 font-weight-bold text-success">Your Name</label>
+    <input type="text" name="user_name" class="form-control" id="user_name" aria-describedby="emailHelp">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-success">Your Email</label>
+    <input type="email" name="user_email" class="form-control" id="user_email">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+
+  {{!-- <div >
+    
+    <input type="text" name="user_state" class="form-control" id="user_state">
+  </div> --}}
+
+  <div class="mb-3">
+											<label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-success">Your State</label>
+											<select id="inputState"  id="user_state" name="user_state" 
+												class="form-control select">
+
+												<option value="" disabled>-- Choose Your Current State -- </option>
+												<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+												<option value="Assam">Assam</option>
+												<option value="Bihar">Bihar</option>
+												<option value="Chhattisgarh">Chhattisgarh</option>
+												<option value="Goa">Goa</option>
+												<option value="Gujarat">Gujarat</option>
+												<option value="Haryana">Haryana</option>
+												<option value="Himachal Pradesh">Himachal Pradesh</option>
+												<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+												<option value="Jharkhand">Jharkhand</option>
+												<option value="Karnataka">Karnataka</option>
+												<option value="Kerala">Kerala</option>
+												<option value="Madya Pradesh">Madya Pradesh</option>
+												<option value="Maharashtra">Maharashtra</option>
+												<option value="Manipur">Manipur</option>
+												<option value="Meghalaya">Meghalaya</option>
+												<option value="Mizoram">Mizoram</option>
+												<option value="Nagaland">Nagaland</option>
+												<option value="Orissa">Orissa</option>
+												<option value="Punjab">Punjab</option>
+												<option value="Rajasthan">Rajasthan</option>
+												<option value="Sikkim">Sikkim</option>
+												<option value="Tamil Nadu">Tamil Nadu</option>
+												<option value="Telangana">Telangana</option>
+												<option value="Tripura">Tripura</option>
+												<option value="Uttaranchal">Uttaranchal</option>
+												<option value="Uttar Pradesh">Uttar Pradesh</option>
+												<option value="West Bengal">West Bengal</option>
+												<option value="Andra Pradesh">Andra Pradesh</option>
+												<option disabled style="background-color:#aaa; color:#fff">
+													UNION
+													Territories</option>
+												<option value="Andaman and Nicobar Islands">Andaman and
+													Nicobar
+													Islands</option>
+												<option value="Chandigarh">Chandigarh</option>
+												<option value="Dadar and Nagar Haveli">Dadar and Nagar
+													Haveli
+												</option>
+												<option value="Daman and Diu">Daman and Diu</option>
+												<option value="Delhi">Delhi</option>
+												<option value="Lakshadeep">Lakshadeep</option>
+												<option value="Pondicherry">Pondicherry</option>
+
+
+
+											</select>
+											<small class="text-danger" id="State"></small>
+										</div>
+
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label fs-5 font-weight-bold text-success">Your Mobile Number</label>
+    <input type="number" name="user_number" class="form-control" id="user_number" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">OTP will send to above number for Signup (don't use country code)</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-success">Your Password</label>
+    <input type="password" name="user_password" class="form-control" id="exampleInputPassword">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label fs-5 font-weight-bold text-success">Your Confirm Password</label>
+    <input type="password" name="user_confirmpassword" class="form-control" id="exampleInputConfirmPassword">
+    <div id="emailHelp" class="form-text">Confirm Password Need To Same Of Above Password.</div>    
+  </div>
+
+  {{!-- <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div> --}}
+
+  <button type="submit" onclick="return validateForm()" class="btn btn-success">Signup</button>
+  <div class="text" style="padding-top: 15px;"> <a style="font-style:italic; color: red;" href="/u-login"> Already Signup ?</a> </div>
+  </form>
+
+{{!-- <h3 class="text-justify text-center">OR </h3>
+
+<form class="m-5" id="otpform" method="POST" action="/u-signup">
+
+
+  <button type="submit" onclick="return validateOtpForm()" class="btn btn-success">Signup</button>
+  <div class="text" style="padding-top: 15px;"> <a style="font-style:italic; color: red;" href="/u-login"> Already Signup ?</a> </div>
+</form> --}}
+</div>
+</section>
