@@ -71,7 +71,8 @@
               <div class="text-center mb-5 mt-5">
                 <h3><strong> Add Second Banner </strong></h3>
               </div>
-              <form action="/a-product/second-banner/{{secondBannerDetails._id}}" onsubmit="return validationaddressplaceSecondBanner()" method="POST" enctype="multipart/form-data" 
+              <form action="/a-product/second-banner/{{secondBannerDetails._id}}" 
+              onsubmit="return validationaddressplaceSecondBanner()" method="POST" enctype="multipart/form-data" 
                 style="padding-top: 40px;" id="add-prod">
                 
                 <label for="inputName">Banner Name</label>
@@ -87,7 +88,7 @@
                   </div>
                   <div class="mt-5 col-md-6">
                     <label for="">IMAGE 1</label>
-                    <img src="/second-banner-images/{{secondBannerDetails._id}}1.jpeg" alt="" style="width: 100px; height:auto" id="imgview1">
+                    <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{secondBannerDetails._id}}1.jpeg" alt="" style="width: 100px; height:auto" id="imgview1">
                     <input type="file" name="image1" id="file1" class="form-control"
                       onchange="return fileValidationSecondBanner1()">
                       <p id="image1" class="text text-danger"></p>
@@ -95,7 +96,7 @@
                   </div>
                   <div class="mt-5 col-md-6">
                     <label for="">IMAGE 2</label>
-                    <img src="/second-banner-images/{{secondBannerDetails._id}}2.jpeg" alt="" style="width: 100px; height:auto" id="imgview2">
+                    <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{secondBannerDetails._id}}2.jpeg" alt="" style="width: 100px; height:auto" id="imgview2">
                     <input type="file" name="image2" id="file2" class="form-control"
                       onchange="return fileValidationSecondBanner2()">
                       <p id="image2" class="text text-danger"></p>
@@ -197,8 +198,8 @@
     <tr>
       <td scope="row" class="index"></td>
       <td>{{this.second_banner_name}}</td>
-      <td> <img style="width: 50px; height: 50px;" src="/second-banner-images/{{this._id}}1.jpeg" alt=""> </td>
-      <td> <img style="width: 50px; height: 50px;" src="/second-banner-images/{{this._id}}2.jpeg" alt=""> </td>
+      <td> <img style="width: 50px; height: 50px;" src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt=""> </td>
+      <td> <img style="width: 50px; height: 50px;" src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}2.jpeg" alt=""> </td>
       <td> <a href="/a-product/delete-second-banner/{{this._id}}" class="btn btn-danger" onclick="return confirm('Data ({{this.second_banner_name}}) will delete permanently, are you sure ?')" >Delete </a> </td>
     </tr>
     {{/each}}

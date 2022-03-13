@@ -10,6 +10,7 @@ const MongoStore = require('connect-mongo')
 var db = require('./config/connection')
 var fileUpload = require('express-fileupload')
 var Promise = require('promise')
+const bodyParser = require('body-parser')
 const fs = require('fs')
 
 var indexRouter = require('./routes/index');
@@ -25,7 +26,7 @@ var a_productRouter = require('./routes/admin/product')
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 const hbs = create({
@@ -44,6 +45,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })); 
 // app.use(session({secret: "Key",
 //  cookie: {maxAge: 6000000},
 //  store: MongoStore.create({ mongoUrl: 'mongodb://localhost/test-app' })

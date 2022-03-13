@@ -70,7 +70,7 @@
                         <div class="home-content text-center text-sm-left position-relative">
                             {{#each ../book}}
                             <div class="hero-partial-image image-right" style='width:50%'>
-                                <img src="../../book-images/{{this._id}}1.jpeg" alt="">
+                                <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                             </div>
                     
                             {{/each}}
@@ -181,12 +181,12 @@
                 <div class="row space-db--30">
                     <div class="col-lg-6 col-md-6 mb--30">
                         <a href="#" class="promo-image promo-overlay">
-                            <img src="/second-banner-images/{{this._id}}1.jpeg" alt="">
+                            <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                         </a>
                     </div>
                     <div class="col-lg-6 col-md-6 mb--30">
                         <a href="#" class="promo-image promo-overlay">
-                            <img src="/second-banner-images/{{this._id}}2.jpeg" alt="">
+                            <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}2.jpeg" alt="">
                         </a>
                     </div>
                 </div>
@@ -252,10 +252,10 @@
                                         </div>
                                         <div class="product-card--body">
                                             <div class="card-image">
-                                                <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                                <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                                                 <div class="hover-contents">
                                                     <a href="/product-details/{{this._id}}" class="hover-image">
-                                                        <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                                        <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                                                     </a>
                                                     <div class="hover-btns">
                                                         <a type="button" class="single-btn" onclick="addToCart('{{this._id}}')">
@@ -317,10 +317,10 @@
                                         </div>
                                         <div class="product-card--body">
                                             <div class="card-image">
-                                                <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                                <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                                                 <div class="hover-contents">
                                                     <a href="/product-details/{{this._id}}" class="hover-image">
-                                                        <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                                        <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                                                     </a>
                                                     <div class="hover-btns">
                                                         <button type="button" class="single-btn">
@@ -329,9 +329,9 @@
                                                         <a href="/wishlist" class="single-btn">
                                                             <i class="fas fa-heart"></i>
                                                         </a>
-                                                        <a href="compare.html" class="single-btn">
+                                                        {{!-- <a href="compare.html" class="single-btn">
                                                             <i class="fas fa-random"></i>
-                                                        </a>
+                                                        </a> --}}
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#quickModal"
                                                             class="single-btn">
                                                             <i class="fas fa-eye"></i>
@@ -389,10 +389,10 @@
                             </div>
                             <div class="product-card--body">
                                 <div class="card-image">
-                                    <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                    <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                                     <div class="hover-contents">
                                         <a href="/product-details/{{this._id}}" class="hover-image">
-                                            <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                            <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                                         </a>
                                         <div class="hover-btns">
                                             <button onclick="addToCart('{{this._id}}')" type="button" class="single-btn">
@@ -443,7 +443,7 @@
                         <div class="col-lg-5 col-md-6">
                             {{#each authorBannerDetails}}
                             <div class="author-image">
-                                <img src="/author-images/{{this._id}}.jpeg" alt="">
+                                <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{this._id}}1.jpeg " alt="">
                             </div>
                             {{/each}}
                         </div>
@@ -467,7 +467,7 @@
                                 <div class="single-slide">
                                     <div class="product-card card-style-list">
                                         <div class="card-image">
-                                            <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                            <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                                         </div>
                                         <div class="product-card--body">
                                             <div class="product-header">
@@ -520,7 +520,7 @@
                     <div class="single-slide">
                         <div class="product-card card-style-list">
                             <div class="card-image">
-                                <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                             </div>
                             <div class="product-card--body">
                                 <div class="product-header">
@@ -551,8 +551,8 @@
                     <div class="col-lg-8 mb--30">
                         <div class="promo-wrapper promo-type-one">
                             <a href="#" class="promo-image  promo-overlay bg-image"
-                                data-bg="/promotion-images/{{promotionBannerDetails.[0]._id}}1.jpeg">
-                                <img src="/promotion-images/{{promotionBannerDetails.[0]._id}}1.jpeg" alt="">
+                                data-bg="https://bookleaves.s3.ap-south-1.amazonaws.com/{{promotionBannerDetails.[0]._id}}1.jpeg">
+                                <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{promotionBannerDetails.[0]._id}}1.jpeg" alt="">
                             </a>
                             <div class="promo-text">
                                 <div class="promo-text-inner">
@@ -566,8 +566,8 @@
                     <div class="col-lg-4 mb--30">
                         <div class="promo-wrapper promo-type-two ">
                             <a href="#" class="promo-image promo-overlay bg-image"
-                                data-bg="/promotion-images/{{promotionBannerDetails.[0]._id}}2.jpeg">
-                                <img src="/promotion-images/{{promotionBannerDetails.[0]._id}}2.jpeg" alt=""> 
+                                data-bg="https://bookleaves.s3.ap-south-1.amazonaws.com/{{promotionBannerDetails.[0]._id}}2.jpeg">
+                                <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{promotionBannerDetails.[0]._id}}2.jpeg" alt=""> 
                             </a>
                             <div class="promo-text">
                                 <div class="promo-text-inner">
@@ -614,10 +614,10 @@
                             </div>
                             <div class="product-card--body">
                                 <div class="card-image">
-                                    <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                    <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                                     <div class="hover-contents">
                                         <a href="/product-details/{{this._id}}" class="hover-image">
-                                            <img src="/book-images/{{this._id}}1.jpeg" alt="">
+                                            <img src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt="">
                                         </a>
                                         <div class="hover-btns">
                                             <button onclick="addToCart('{{this._id}}')" type="button" class="single-btn">
@@ -654,7 +654,7 @@
         ===================================== -->
         <section class="section-margin">
             <div class="promo-wrapper promo-type-three">
-                <a href="#" class="promo-image promo-overlay bg-image" data-bg="/last-promotion-images/{{lastpromotionBannerDetails.[0]._id}}.jpeg">
+                <a href="#" class="promo-image promo-overlay bg-image" data-bg="https://bookleaves.s3.ap-south-1.amazonaws.com/{{lastpromotionBannerDetails.[0]._id}}1.jpeg">
                 </a>
                 <div class="promo-text w-100 ml-0">
                     <div class="container">

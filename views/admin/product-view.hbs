@@ -6,7 +6,7 @@
 <a href="/a-product/add-product" class="btn btn-success " style="flex-basis: max-content;">Add New Book</a>
 </div>
 
-   <table id="example" class="table table-striped text-wrap" style="width:100%">
+   <table id="example" class="table table-striped text-wrap container">
         <thead>
             <tr>
                 <th scope="col">No</th>
@@ -16,7 +16,7 @@
       <th scope="col">Language</th>
       <th scope="col">Category</th>
       <th scope="col">Sub Category</th>
-      <th scope="col">Book Description</th>
+      {{!-- <th style="width: 100px;" scope="col">Book Description</th> --}}
       <th scope="col">Check Premium</th>
       <th scope="col">Image</th>
       <th></th>
@@ -34,13 +34,15 @@
       <td>{{this.book_language}}</td>
       <td>{{this.book_category}}</td>
       <td>{{this.book_sub_category}}</td>
-      <td id="book_description">{{this.book_description}}</td>
+      {{!-- <td  style="width: 100px;" id="book_description">{{this.book_description}}</td> --}}
       <td>{{this.book_checkPremium}}</td>
-      <td> <img style="width: 50px; height: 50px;" src="/book-images/{{this._id}}1.jpeg" alt=""> </td>
+      <td> <img style="width: 50px; height: 50px;" src="https://bookleaves.s3.ap-south-1.amazonaws.com/{{_id}}1.jpeg" alt=""> </td>
       <td> <a href="/a-product/product-edit/{{this._id}}" class="btn btn-primary" >Edit </a> </td>
       <td> <a href="/a-product/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Data ({{this.book_name}}) will delete permanently, are you sure ?')" >Delete </a> </td>
     </tr>
     {{/each}}
+
+    
             
         </tbody>
         

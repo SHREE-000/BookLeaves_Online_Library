@@ -130,7 +130,7 @@ function deleteWishlist(event , proId , bookName) {
     }).then(async(result) => {
         console.log(result);
             if (result.isConfirmed) {
-                let response = await fetch("http://localhost:3000/delete-wishlist-product", {
+                let response = await fetch("/delete-wishlist-product", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -193,7 +193,7 @@ function deleteCart(event , proId , bookName) {
     }).then(async(result) => {
         console.log(result);
             if (result.isConfirmed) {
-                let response = await fetch("http://localhost:3000/delete-cart-product", {
+                let response = await fetch("/delete-cart-product", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -972,8 +972,8 @@ setTimeout(function(){ x.className = x.className.replace("show", ""); }, 10000);
 // for login
 
 $('.message a').click(function(){
-    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
- });
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
 
 
 

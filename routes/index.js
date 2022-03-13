@@ -30,7 +30,7 @@ const verifyLogin = ( (req,res,next) =>{
 })
 
 /* GET home page. */
-router.get('/',  async(req, res, next) => {
+router.get('/' ,  async(req, res, next) => {
 
   const bookDetails = await productHelpers.getAllProduct()
   const book = bookDetails.book 
@@ -139,7 +139,7 @@ router.get('/cart', verifyLogin , async(req,res) =>{
 })
 
 
- router.get('/add-to-cart/:id'  ,async (req,res) => {
+ router.get('/add-to-cart/:id'   ,verifyLogin,async (req,res) => {
   await productHelpers.addCart(req.params.id , req.session.user._id)
   let shiprate = await productHelpers.findDeliveryRate()  
   let cartCount = await productHelpers.getCartCount(req.session.user._id)
@@ -187,7 +187,7 @@ router.get('/add-to-wishlist/:id'  , verifyLogin , async (req,res) => {
    res.json({status:true , wishlistCount }) 
   })
 
-  router.post('/delete-wishlist-product', (req,res) => {
+  router.post('/delete-wishlist-product', verifyLogin ,(req,res) => {
     productHelpers.deleteWishlist(req.body.proId , req.session.user._id).then( (response) => {
       res.json({status:true})
     })
@@ -251,7 +251,7 @@ res.render('user/add-profile' , {user_partial : true , user : req.session.user ,
 })
 
 
-router.post('/add-profile', async(req,res) => {
+router.post('/add-profile',verifyLogin , async(req,res) => {
 
     if (req.session.user) {
     await productHelpers.addAddress(req.body , req.session.user._id).then ( (response) => {
@@ -267,7 +267,7 @@ res.redirect('/user-profile' )
 
 // add profile in checkout page
 
-router.post('/add-profile-checkout', async(req,res) => {
+router.post('/add-profile-checkout', verifyLogin ,async(req,res) => {
 
     if (req.session.user) {
     await productHelpers.addAddress(req.body , req.session.user._id).then ( (response) => {
@@ -331,7 +331,7 @@ router.get('/user-profile',verifyLogin, async(req,res) => {
 
 // delete address
 
-router.get('/delete-profile/:id', async (req,res) => {
+router.get('/delete-profile/:id',verifyLogin , async (req,res) => {
 
   if (req.session.user) {
   await productHelpers.deleteAddress(req.session.user._id , req.params.id).then( (response) => {
@@ -372,7 +372,7 @@ res.render('user/edit-profile' , {user_partial : true , user : req.session.user 
 
 
 
-router.post('/edit-profile' , async(req,res) => {
+router.post('/edit-profile' ,verifyLogin , async(req,res) => {
   if (req.session.user) {
     const message = await productHelpers.editAddress(req.session.user._id , req.body)
 
@@ -508,7 +508,7 @@ router.get('/view-order',verifyLogin , async (req,res) => {
     res.render('user/profile' , {user_partial : true , user : req.session.user, userData , oneBook , totalRate , cartCount , shiprate , user , successMessage})
   })
 
-  router.post('/profile', async(req,res)=> {
+  router.post('/profile', verifyLogin ,async(req,res)=> {
 
     
 
@@ -742,7 +742,7 @@ router.post('/checkout',verifyLogin, async(req,res) => {
 
 // verify payment razorpay
 
-router.post('/verify-payment',async (req,res) => {
+router.post('/verify-payment', verifyLogin ,async (req,res) => {
 
 
   await productHelpers.verifyPayment(req.body).then( (response) => {
@@ -924,7 +924,7 @@ router.get('/cancel', (req, res) => res.send('Cancelled'));
 
 // verify payment razorpay for subscription plan
 
-router.post('/verify-payment-subsciption',async (req,res) => {
+router.post('/verify-payment-subsciption',verifyLogin ,async (req,res) => {
 
   
 
@@ -1031,7 +1031,7 @@ router.get ('/coupon-view',verifyLogin,async (req,res) => {
 
 // getting  offer coupon from database
 
-  router.post ('/gettingCoupon', async (req,res) => {
+  router.post ('/gettingCoupon',verifyLogin , async (req,res) => {
 
     
 

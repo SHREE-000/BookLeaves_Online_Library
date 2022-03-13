@@ -4,10 +4,26 @@ const { Db } = require('mongodb')
 const { post } = require('..')
 const router = express.Router()
 var moment = require ('moment')
+require('dotenv').config()
+const util = require('util');
+const Formidable = require('formidable');
 const adminCategoryHelpers = require ('../../helpers/admin_product')
 const { order } = require('paypal-rest-sdk')
+const AWS = require('aws-sdk')
+const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESS_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+})
 const schedule = require('node-schedule');
+var cloudinary = require('cloudinary');
+var cloudinary = require('cloudinary').v2;
 
+cloudinary.config({ 
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.API_KEY, 
+    api_secret: process.env.API_SECRET,
+    secure: true
+  });
 
 
 const verifyLogin = ( (req,res,next) =>{
@@ -142,30 +158,106 @@ router.get('/add-product' , verifyLogin ,  async (req , res) => {
 })
 
 router.post('/add-product',async (req ,res) => {
+    console.log("firstttt");
 
-    await adminCategoryHelpers.adminAddProduct(req.body , req.params.id).then(async(response) => {
-      
+    await adminCategoryHelpers.adminAddProduct(req.body).then(async(response) => {
+
+        const img1 = req.files.image1
+        const img2 = req.files.image2
+        const img3 = req.files.image3
+        const img4 = req.files.image4
+
         const id  = response.productId
 
         await adminCategoryHelpers.adminAddProductDate(id)
+  
+        if (img1) {
+            let params={
+                Bucket:process.env.AWS_BUCKET_NAME,
+                Key:  id + '1.jpeg',
+                Body:img1.data
+            }
+    
+            s3.upload(params, (err, data) => {
+                if (err) {
+    
+    
+                    console.log(err, 'Profile Uplad Err  :1');
+                } else {
+    
+    
+                    console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+                }
+            })
+        }
 
-        const image1 = req.files.image1
-        const image2 = req.files.image2
-        const image3 = req.files.image3
-        const image4 = req.files.image4
+        if (img2) {
+            let params={
+                Bucket:process.env.AWS_BUCKET_NAME,
+                Key:  id + '2.jpeg',
+                Body:img2.data
+            }
+    
+            s3.upload(params, (err, data) => {
+                if (err) {
+    
+    
+                    console.log(err, 'Profile Uplad Err  :1');
+                } else {
+    
+    
+                    console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+                }
+            })
+        }
 
-        if (image1) {
-            image1.mv('./public/book-images/'+id+'1.jpeg')
+
+        if (img3) {
+            let params={
+                Bucket:process.env.AWS_BUCKET_NAME,
+                Key:  id + '3.jpeg',
+                Body:img3.data
+            }
+    
+            s3.upload(params, (err, data) => {
+                if (err) {
+    
+    
+                    console.log(err, 'Profile Uplad Err  :1');
+                } else {
+    
+    
+                    console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+                }
+            })
         }
-        if (image2) {
-            image2.mv('./public/book-images/'+id+'2.jpeg')
+
+        if (img4) {
+            let params={
+                Bucket:process.env.AWS_BUCKET_NAME,
+                Key:  id + '4.jpeg',
+                Body:img4.data
+            }
+    
+            s3.upload(params, (err, data) => {
+                if (err) {
+    
+    
+                    console.log(err, 'Profile Uplad Err  :1');
+                } else {
+    
+    
+                    console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+                }
+            })
         }
-        if (image3) {
-            image3.mv('./public/book-images/'+id+'3.jpeg')
-        }
-        if (image4) {
-            image4.mv('./public/book-images/'+id+'4.jpeg')
-        }
+
+
+
+       
+
+
+
    
         res.redirect('/a-product/product-view')
     })
@@ -323,14 +415,44 @@ router.post('/second-banner', (req,res) => {
         const img1 = req.files.image1
         const img2 = req.files.image2
 
-        console.log(img2 , img1 + "this is from image data");
-
         if (img1) {
-            img1.mv('./public/second-banner-images/' + id + '1.jpeg')
+            let params={
+                Bucket:process.env.AWS_BUCKET_NAME,
+                Key:  id + '1.jpeg',
+                Body:img1.data
+            }
+    
+            s3.upload(params, (err, data) => {
+                if (err) {
+    
+    
+                    console.log(err, 'Profile Uplad Err  :1');
+                } else {
+    
+    
+                    console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+                }
+            })
         }
 
         if (img2) {
-            img2.mv('./public/second-banner-images/' + id + '2.jpeg')
+            let params={
+                Bucket:process.env.AWS_BUCKET_NAME,
+                Key:  id + '2.jpeg',
+                Body:img2.data
+            }
+    
+            s3.upload(params, (err, data) => {
+                if (err) {
+    
+    
+                    console.log(err, 'Profile Uplad Err  :1');
+                } else {
+    
+    
+                    console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+                }
+            })
         }
 
         res.redirect('/a-product/second-banner')
@@ -368,9 +490,23 @@ router.post('/author-banner',async (req,res) => {
 
         const img1 = req.files.image1
 
-        if (img1) {
-            img1.mv('./public/author-images/' + id + '.jpeg')
+        let params={
+            Bucket:process.env.AWS_BUCKET_NAME,
+            Key:  id + '1.jpeg',
+            Body:img1.data
         }
+
+        s3.upload(params, (err, data) => {
+            if (err) {
+
+
+                console.log(err, 'Profile Uplad Err  :1');
+            } else {
+
+
+                console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+            }
+        })
 
         res.redirect('/a-product/author-banner')
     })
@@ -407,10 +543,43 @@ router.get('/promotion-banner', verifyLogin , async (req,res) => {
         const img2 = req.files.image2
 
         if (img1) {
-            img1.mv('./public/promotion-images/' + id + '1.jpeg')
+            let params={
+                Bucket:process.env.AWS_BUCKET_NAME,
+                Key:  id + '1.jpeg',
+                Body:img1.data
+            }
+    
+            s3.upload(params, (err, data) => {
+                if (err) {
+    
+    
+                    console.log(err, 'Profile Uplad Err  :1');
+                } else {
+    
+    
+                    console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+                }
+            })
         }
+
         if (img2) {
-            img1.mv('./public/promotion-images/' + id + '2.jpeg')
+            let params={
+                Bucket:process.env.AWS_BUCKET_NAME,
+                Key:  id + '2.jpeg',
+                Body:img2.data
+            }
+    
+            s3.upload(params, (err, data) => {
+                if (err) {
+    
+    
+                    console.log(err, 'Profile Uplad Err  :1');
+                } else {
+    
+    
+                    console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+                }
+            })
         }
 
         res.redirect('/a-product/promotion-banner')
@@ -475,7 +644,23 @@ router.post('/last-promotion',async (req,res) => {
         const img1 = req.files.image1
 
         if (img1) {
-            img1.mv('./public/last-promotion-images/' + id + '.jpeg')
+            
+            let params={
+                Bucket:process.env.AWS_BUCKET_NAME,
+                Key:  id + '1.jpeg',
+                Body:img1.data
+            }
+    
+            s3.upload(params, (err, data) => {
+                if (err) {
+
+                    console.log(err, 'Profile Uplad Err  :1');
+                } else {
+    
+                    console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+                }
+            })
+
         }
         
 
