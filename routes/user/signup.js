@@ -64,12 +64,7 @@ router.post("/", async (req, res) => {
 					}
 				})
 			}
-				// res.redirect("/u-otp");
-			// } else {
-			// 	req.session.errorMessage = "Sending OTP Failed , Please Try Again Later";
-			// 	req.session.errorMessage = response.errorMessage;
-			// 	res.redirect("/u-signup");
-			// }
+			
 		});
 	}catch(error){
 		console.log(error);
