@@ -6,6 +6,7 @@ var moment = require ('moment')
 const paypal = require('paypal-rest-sdk'); 
 const { resolve } = require('promise');
 const schedule = require('node-schedule');
+require('dotenv').config()
 const { Db } = require('mongodb');
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3({
