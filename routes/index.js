@@ -7,6 +7,11 @@ const paypal = require('paypal-rest-sdk');
 const { resolve } = require('promise');
 const schedule = require('node-schedule');
 const { Db } = require('mongodb');
+const AWS = require('aws-sdk')
+const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESS_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+})
 
 
 paypal.configure({
@@ -549,11 +554,27 @@ router.get('/view-order',verifyLogin , async (req,res) => {
 
     const id = req.session.user._id
 
-    const image1 = req.files.image1
+    const img1 = req.files.image1
   
-    if (image1) {
-      image1.mv('./public/profile-images/' + id + '.jpeg')
-    }
+    if (img1) {
+      let params={
+          Bucket:process.env.AWS_BUCKET_NAME,
+          Key:  id + '1.jpeg',
+          Body:img1.data
+      }
+
+      s3.upload(params, (err, data) => {
+          if (err) {
+
+
+              console.log(err, 'Profile Uplad Err  :1');
+          } else {
+
+
+              console.log(data, 'IMAGE FOUR SUCCESSFULLY UPLOADED');
+          }
+      })
+  }
 
 
     req.session.successMessage = await productHelpers.updateUserData(req.session.user._id , req.body)
