@@ -13,6 +13,10 @@ var Promise = require('promise')
 const bodyParser = require('body-parser')
 const fs = require('fs')
 
+const pass = process.env.PASSWORD_DB
+const dbname = process.env.DB_NAME
+
+
 var indexRouter = require('./routes/index');
 var u_loginRouter = require('./routes/user/login');
 var u_signupRouter = require('./routes/user/signup');
@@ -52,14 +56,33 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //  store: MongoStore.create({ mongoUrl: 'mongodb://localhost/test-app' })
 // }))
 
-app.use(session({secret:"key", 
-resave: true,
-saveUninitialized: true,
-cookie:{maxAge:6000000}}))
-app.use(function(req, res, next) {
-  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-  next();
-});
+// app.use(session({
+//   store: MongoStore.create({ mongoUrl: `mongodb+srv://shreehari:${pass}@cluster0.ezi4j.mongodb.net/${dbname}?retryWrites=true&w=majority` 
+//  })
+// }));
+
+// app.use(session({secret:"key", 
+// resave: true,
+// saveUninitialized: true,
+// cookie:{maxAge:6000000}}))
+// app.use(function(req, res, next) {
+//   res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+//   next();
+// });
+
+app.use(session({
+  secret:'secret',
+  store : MongoStore.create({
+    mongoUrl: `mongodb+srv://shreehari:${pass}@cluster0.ezi4j.mongodb.net/${dbname}?retryWrites=true&w=majority` ,
+    ttl : 6 * 24 * 60 * 60,
+    autoRemove : 'native'
+  }),
+  cookie:{
+    maxAge:3600000000000,
+    resave : false,
+    saveUninitialized : false,
+  }
+}))
 
 
 app.use(fileUpload())
