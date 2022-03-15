@@ -100,9 +100,11 @@ router.get('/product-details/:id',verifyLogin , async(req , res) => {
   let shiprate
   let onBook 
   let oneBook
+  let wishlistCount
   
 
   if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -116,7 +118,7 @@ router.get('/product-details/:id',verifyLogin , async(req , res) => {
   productHelpers.findOneProduct(id).then( (response) => { 
     const oneBook = response.oneBook
     res.render('user/product-details', {user_partial : true , oneBook, user : req.session.user ,
-      shiprate , cartCount , totalRate })
+      shiprate , cartCount ,  wishlistCount ,totalRate })
   })
 })
 
@@ -129,9 +131,11 @@ router.get('/cart', verifyLogin , async(req,res) =>{
   let shiprate
   let onBook 
   let oneBook
+  let wishlistCount
   
 
   if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -141,7 +145,7 @@ router.get('/cart', verifyLogin , async(req,res) =>{
   totalRate = cartCount * shiprate
  
 
-  res.render('user/cart', {user_partial : true, oneBook , user : req.session.user, shiprate , cartCount , totalRate})
+  res.render('user/cart', {user_partial : true, oneBook , wishlistCount, user : req.session.user, shiprate , cartCount , totalRate})
 })
 
 
@@ -169,6 +173,8 @@ router.get('/wishlist' , verifyLogin ,async (req,res) => {
   let cartCount = null
   let totalRate = null
   let shiprate
+  let wishlistCount
+  let onBook
 
   
 
@@ -176,14 +182,14 @@ router.get('/wishlist' , verifyLogin ,async (req,res) => {
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
 
+  wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
+  onBook = await productHelpers.getWishItem(req.session.user._id)
   }
  
   totalRate = cartCount * shiprate
 
-  let onBook = await productHelpers.getWishItem(req.session.user._id)
-  let oneBook = onBook[0]
-
-  res.render('user/wishlist' , {user_partial : true , shiprate , oneBook , user : req.session.user  , cartCount , totalRate} )
+  res.render('user/wishlist' , {user_partial : true , shiprate , onBook , user : req.session.user  ,
+    wishlistCount , cartCount , totalRate} )
 })
 
 router.get('/add-to-wishlist/:id'  , verifyLogin , async (req,res) => {
@@ -214,9 +220,11 @@ router.get('/edit-profile',verifyLogin, async(req,res) => {
   let shiprate
   let onBook 
   let oneBook
+  let wishlistCount
   
 
   if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -225,7 +233,8 @@ router.get('/edit-profile',verifyLogin, async(req,res) => {
  
   totalRate = cartCount * shiprate
 
-res.render('user/edit-profile' , {user_partial : true , user : req.session.user , cartCount , totalRate , oneBook})
+res.render('user/edit-profile' , {user_partial : true , user : req.session.user ,  wishlistCount ,
+  cartCount , totalRate , oneBook})
 })
 
 // add profile
@@ -240,9 +249,11 @@ router.get('/add-profile',verifyLogin, async(req,res) => {
   let shiprate
   let onBook 
   let oneBook
+  let wishlistCount
   
 
   if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -253,7 +264,8 @@ router.get('/add-profile',verifyLogin, async(req,res) => {
 
 
 
-res.render('user/add-profile' , {user_partial : true , user : req.session.user , cartCount , oneBook , totalRate , successMessage})
+res.render('user/add-profile' , {user_partial : true , user : req.session.user ,
+  wishlistCount , cartCount , oneBook , totalRate , successMessage})
 })
 
 
@@ -306,9 +318,11 @@ router.get('/user-profile',verifyLogin, async(req,res) => {
   let shiprate
   let onBook 
   let oneBook
+  let wishlistCount
   
 
   if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -323,7 +337,7 @@ router.get('/user-profile',verifyLogin, async(req,res) => {
 
     if (address) {
       res.render('user/user-profile' , {user_partial : true , user : req.session.user , cartCount , totalRate ,
-        errorMessage , successMessage ,oneBook , address})
+        errorMessage , successMessage ,oneBook , wishlistCount , address})
     }
     else {
       req.session.successMessage = "Please Add Your Address, You Haven't Added  Yet"
@@ -358,22 +372,24 @@ router.get('/edit-profile/:id',verifyLogin, async(req,res) => {
   let shiprate
   let onBook 
   let oneBook
+  let wishlistCount
   
 
   if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
   oneBook = onBook[0] 
-  }
-  addressDetails = await productHelpers.getOneAddress(  req.params.id , req.session.user._id  ) 
+  } 
+  addressDetails = await productHelpers.getOneAddress(  req.params.id  , req.session.user._id  ) 
 
 
  
   totalRate = cartCount * shiprate
 
 res.render('user/edit-profile' , {user_partial : true , user : req.session.user , cartCount , totalRate ,
-   addressDetails ,  oneBook })
+   addressDetails , wishlistCount , oneBook })
 })
 
 
@@ -391,7 +407,13 @@ router.post('/edit-profile' ,verifyLogin , async(req,res) => {
 // place order
 
 router.get('/place-order',verifyLogin, async(req,res) => {
-  const user = await productHelpers.getUser(req.session.user._id)
+  let user
+  let wishlistCount
+
+  if (req.session.user) {
+  user = await productHelpers.getUser(req.session.user._id)
+  wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
+}
   const userId = user._id
   let rent = false
   const errorMessage = req.session.errorMessage 
@@ -402,7 +424,7 @@ router.get('/place-order',verifyLogin, async(req,res) => {
        rent = true
      }
    })
-  res.render('user/place-order', { user : req.session.user , errorMessage ,  user_partial : true  , rent})
+  res.render('user/place-order', { user : req.session.user ,wishlistCount , errorMessage ,  user_partial : true  , rent})
 })
 
 // place order for subscription
@@ -414,9 +436,11 @@ router.get('/place-order-subscription' , verifyLogin , async (req,res)=> {
   let shiprate
   let onBook 
   let oneBook
+  let wishlistCount
   
 
   if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -426,7 +450,7 @@ router.get('/place-order-subscription' , verifyLogin , async (req,res)=> {
   totalRate = cartCount * shiprate
 
   res.render('user/place-order-subscription' , {user_partial : true , user : req.session.user ,
-     oneBook , totalRate , shiprate , cartCount})
+     oneBook , totalRate ,  wishlistCount ,shiprate , cartCount})
 })
 
 
@@ -435,7 +459,12 @@ router.get('/place-order-subscription' , verifyLogin , async (req,res)=> {
 router.get('/view-order',verifyLogin , async (req,res) => {
   const succesMessage = req.session.succesMessage
   req.session.succesMessage = null
- const orders = await productHelpers.userOrderDetails(req.session.user._id)
+let wishlistCount
+let orders
+  if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
+    orders = await productHelpers.userOrderDetails(req.session.user._id)
+  }
  let isActive = "Pending"
 
 
@@ -447,7 +476,8 @@ router.get('/view-order',verifyLogin , async (req,res) => {
  for( x of orders) {
    x.date = moment (x.date).format("ll")
  }
-    res.render('user/view-order',{user : req.session.user , isActive , succesMessage ,  user_partial : true  , orders})
+    res.render('user/view-order',{user : req.session.user , isActive , wishlistCount, 
+       succesMessage ,  user_partial : true  , orders})
 
   })
 
@@ -456,8 +486,12 @@ router.get('/view-order',verifyLogin , async (req,res) => {
   router.get('/cancel-order/:id' , verifyLogin , async (req,res) => {
     
     id = req.params.id
+    let msg
  
-    const msg = await productHelpers.changePaymentStatusByUser(req.session.user._id , id)
+    if (req.session.user) {
+      msg  = await productHelpers.changePaymentStatusByUser(req.session.user._id , id)
+    }
+    
     req.session.successMessage = msg
     res.redirect('/view-order')
   })
@@ -465,14 +499,23 @@ router.get('/view-order',verifyLogin , async (req,res) => {
   // ordered book details
 
   router.get('/order-book-details' ,verifyLogin, async (req,res) => {
+    let orders
+    let wishlistCount
+    let x
+
+    if (req.session.user) {
+      orders = await productHelpers.userOrderDetails(req.session.user._id)
+      wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
+      for( x of orders) {
+        x.date = moment (x.date).format("ll")
+      }
+    }
   
- const orders = await productHelpers.userOrderDetails(req.session.user._id)
 
- for( x of orders) {
-  x.date = moment (x.date).format("ll")
-}
 
-    res.render('user/order-book-details', {user : req.session.user , user_partial : true  , orders})
+ 
+
+    res.render('user/order-book-details', {user : req.session.user ,  wishlistCount ,user_partial : true  , orders})
   })
 
   // add , edit , delete profile page not address
@@ -485,9 +528,11 @@ router.get('/view-order',verifyLogin , async (req,res) => {
     let shiprate
     let onBook 
     let oneBook
+    let wishlistCount
     
   
     if (req.session.user) {
+      wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)  
     cartCount = await productHelpers.getCartCount(req.session.user._id) 
     shiprate = await productHelpers.findDeliveryRate() 
     onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -511,7 +556,8 @@ router.get('/view-order',verifyLogin , async (req,res) => {
       req.session.successMessage = null
 
    
-    res.render('user/profile' , {user_partial : true , user : req.session.user, userData , oneBook , totalRate , cartCount , shiprate , user , successMessage})
+    res.render('user/profile' , {user_partial : true , user : req.session.user, userData , oneBook ,
+      wishlistCount , totalRate , cartCount , shiprate , user , successMessage})
   })
 
   router.post('/profile', verifyLogin ,async(req,res)=> {
@@ -534,8 +580,10 @@ router.get('/view-order',verifyLogin , async (req,res) => {
     let shiprate
     let onBook 
     let oneBook
+    let wishlistCount
   
     if (req.session.user) {
+      wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)  
     cartCount = await productHelpers.getCartCount(req.session.user._id) 
     shiprate = await productHelpers.findDeliveryRate() 
     onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -546,7 +594,7 @@ router.get('/view-order',verifyLogin , async (req,res) => {
     const user = await productHelpers.getUser(req.session.user._id)
  
 
-    res.render('user/editProfile', {user, user_partial : true , oneBook , shiprate , user : req.session.user, onBook ,totalRate })
+    res.render('user/editProfile', {user, user_partial : true , oneBook , shiprate , wishlistCount , user : req.session.user, onBook ,totalRate })
   })
 
   router.post('/editProfile',verifyLogin, async (req,res) => {
@@ -577,7 +625,6 @@ router.get('/view-order',verifyLogin , async (req,res) => {
       })
   }
 
-
     req.session.successMessage = await productHelpers.updateUserData(req.session.user._id , req.body)
 
     res.redirect('/profile')
@@ -592,9 +639,11 @@ router.get('/view-order',verifyLogin , async (req,res) => {
     let shiprate
     let onBook 
     let oneBook
+    let wishlistCount
     
   
     if (req.session.user) {
+      wishlistCount = await productHelpers.getWishlistCount(req.session.user._id) 
     cartCount = await productHelpers.getCartCount(req.session.user._id) 
     shiprate = await productHelpers.findDeliveryRate() 
     onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -605,7 +654,7 @@ router.get('/view-order',verifyLogin , async (req,res) => {
 
     const subscription_plans = await productHelpers.findPlans()
     res.render('user/subscription' , {user_partial : true , subscription_plans , user : req.session.user ,
-      oneBook , totalRate , cartCount , shiprate })
+      oneBook , totalRate , cartCount , wishlistCount , shiprate })
   })
 
   router.post('/subscription', verifyLogin ,async(req,res) => {
@@ -629,7 +678,7 @@ router.get('/view-order',verifyLogin , async (req,res) => {
 router.get('/checkout', verifyLogin , async(req,res) => {
 
   let address
-
+  let wishlistCount 
   const specified_plan = await productHelpers.findFirstUserPlans(req.session.user._id)
   let maxCount = parseInt (specified_plan.maxCountBooks)
   const order = await productHelpers.userOrderDetails(req.session.user._id)
@@ -667,6 +716,7 @@ if ( maxCount > trueCount || maxCount == trueCount ) {
   
 
   if (req.session.user) {
+  wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -692,7 +742,7 @@ if ( maxCount > trueCount || maxCount == trueCount ) {
   }
  
 
-  res.render('user/checkout', {user_partial : true , cartCount  , errorMessage ,user_details ,
+  res.render('user/checkout', {user_partial : true , cartCount  , wishlistCount, errorMessage ,user_details ,
      successMessage ,totalRate ,oneBook , shiprate , address  , nullBook , user : req.session.user} )
 
   }
@@ -862,9 +912,11 @@ router.get('/cancel', (req, res) => res.send('Cancelled'));
     let shiprate
     let onBook 
     let oneBook
+    let wishlistCount
     
   
     if (req.session.user) {
+      wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
     cartCount = await productHelpers.getCartCount(req.session.user._id) 
     shiprate = await productHelpers.findDeliveryRate() 
     onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -883,7 +935,7 @@ router.get('/cancel', (req, res) => res.send('Cancelled'));
     const errorMessage = req.session.errorMessage 
     req.session.errorMessage = null
    
-    res.render('user/checkout-subscription', {user_partial : true , errorMessage , subscription_rate , shiprate ,
+    res.render('user/checkout-subscription', {user_partial : true , wishlistCount , errorMessage , subscription_rate , shiprate ,
       finalAmount, discountedRate ,  subscription_plan , oneBook , totalRate  , cartCount ,user : req.session.user})
   })
 
@@ -975,9 +1027,11 @@ router.get('/contact', verifyLogin , async (req,res) => {
   let shiprate
   let onBook 
   let oneBook
+  let wishlistCount
   
 
   if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -986,7 +1040,8 @@ router.get('/contact', verifyLogin , async (req,res) => {
  
   totalRate = cartCount * shiprate
 
-  res.render('user/contact', {user_partial : true , user : req.session.user , oneBook , totalRate ,shiprate ,cartCount})
+  res.render('user/contact', {user_partial : true , user : req.session.user , oneBook , totalRate ,
+    wishlistCount , shiprate ,cartCount})
 })
 
 // searched_contents Page for index
@@ -998,9 +1053,11 @@ router.post('/searched-contents', verifyLogin , async (req,res) => {
   let shiprate
   let onBook 
   let oneBook
+  let wishlistCount
   
 
   if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -1016,7 +1073,7 @@ router.post('/searched-contents', verifyLogin , async (req,res) => {
   req.session.errorMessage = null
   console.log(errorMessage , "abc from contact");
   res.render('user/searched_contents', {user_partial : true  , searchedProducts , user : req.session.user ,
-    oneBook , totalRate , cartCount , errorMessage , shiprate })
+    oneBook , totalRate , cartCount , errorMessage ,  wishlistCount ,shiprate })
 })
 
 // coupons
@@ -1028,9 +1085,11 @@ router.get ('/coupon-view',verifyLogin,async (req,res) => {
   let shiprate
   let onBook 
   let oneBook
+  let wishlistCount
   
 
   if (req.session.user) {
+    wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
   cartCount = await productHelpers.getCartCount(req.session.user._id) 
   shiprate = await productHelpers.findDeliveryRate() 
   onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -1048,7 +1107,7 @@ router.get ('/coupon-view',verifyLogin,async (req,res) => {
   }
 
   res.render('user/coupon-view' , {successMessage ,user_partial : true , user : req.session.user ,
-    oneBook , totalRate , cartCount , shiprate ,  planTitle , coupon})
+    oneBook , totalRate , cartCount , wishlistCount , shiprate ,  planTitle , coupon})
 })
 
 // getting  offer coupon from database
@@ -1096,9 +1155,11 @@ router.get ('/coupon-view',verifyLogin,async (req,res) => {
     let shiprate
     let onBook 
     let oneBook
+    let wishlistCount
     
   
     if (req.session.user) {
+      wishlistCount = await productHelpers.getWishlistCount(req.session.user._id)
     cartCount = await productHelpers.getCartCount(req.session.user._id) 
     shiprate = await productHelpers.findDeliveryRate() 
     onBook = await productHelpers.getCartItem(req.session.user._id)
@@ -1177,7 +1238,7 @@ if (fine > 0) {
   
     res.render('user/subscription_order' , {specified_plan  , fineAmount , errorMessage , orders , 
       succesMessage , remainingCount , count , user : req.session.user , fine , user_partial : true ,
-      oneBook , totalRate , cartCount , shiprate })
+      oneBook , totalRate , cartCount , wishlistCount , shiprate })
   })
 
 

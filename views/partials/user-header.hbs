@@ -227,8 +227,9 @@
                                     </div>
                                     {{/if}} --}}
 
-                                     {{#if cartCount}}
+                                     
                                     <div class="cart-block">
+                                        {{#if user}}
                                         <div class="cart-total">
                                             <span class="text-number" id="cart-count">
                                                 {{cartCount}}
@@ -236,12 +237,13 @@
                                             <span class="text-item">
                                                 Rent Cart
                                             </span>
+                                            {{#if cartCount}}
                                             <span class="price" id="total-rate">
                                                 ₹{{totalRate}}
                                                 <i class="fas fa-chevron-down"></i>
                                             </span>
-                                        </div>
                                         {{/if}}
+                                        </div>
 
                                         {{#if cartCount}}
 
@@ -274,6 +276,7 @@
                                             </div>
                                         </div>
                                     {{/if}}
+                                    {{/if}}
                                     
                                     </div>
 
@@ -305,7 +308,7 @@
 
                                                                        
 
-                                        {{#if cartCount}}
+                                        
                                     <li class="sin-link mx-2">
                                         <div class="cart-total">
                                             <span class="text-number" id="cart-count">
@@ -315,12 +318,14 @@
                                                 Rent Cart
                                             </span> --}} <a href="/cart">
                                                 <i class="ion-bag"></i>
+                                                {{#if cartCount}}
                                             <span class="price" id="total-rate">
                                                 ₹{{totalRate}}
+                                                </span>
+                                        {{/if}}
                                             </a>
                                         </div>
                                     </li>
-                                        {{/if}}
 
                                      <li class="menu-item ">
                                         <a href="/wishlist">Wishlist <i class="fas fa-heart"></i> 

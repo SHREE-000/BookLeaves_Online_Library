@@ -320,6 +320,7 @@ getCartItem : (userId) => {
                     }
                 }
         ]).toArray()
+        console.log(cartItems , "cart from database");
         
        if (cartItems) {
            resolve(cartItems)
@@ -331,8 +332,9 @@ getCartItem : (userId) => {
 } ,
 
 getWishItem : (userId) => {
+
     return new Promise (async (resolve, reject) => {
-        const wishItems = await db.get().collection(collection.WISHLIST_COLLECTION).aggregate([
+        const wishItem = await db.get().collection(collection.WISHLIST_COLLECTION).aggregate([
             {
                 $match : {
                     user : objectId(userId)
@@ -353,9 +355,14 @@ getWishItem : (userId) => {
                     }
                 }
         ]).toArray()
+
+
         
-       if (wishItems) {
-           resolve(wishItems)
+            
+        console.log(wishItem[0].wishItems, "wishitems frim db");
+        
+       if (wishItem) {
+           resolve(wishItem[0].wishItems)
        }
        else {
            resolve()
@@ -368,10 +375,10 @@ getWishlistCount : (userId) => {
 
         let countt
 
-        const cart = await db.get().collection(collection.WISHLIST_COLLECTION).findOne({user : objectId(userId)})
+        const wishlist = await db.get().collection(collection.WISHLIST_COLLECTION).findOne({user : objectId(userId)})
 
-        if (cart) {
-             countt = cart.product.length               
+        if (wishlist) {
+             countt = wishlist.product.length - 1;               
         }
         else {
             countt = 0
