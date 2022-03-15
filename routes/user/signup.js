@@ -34,7 +34,6 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
   req.session.signUpData = req.body;
 
   req.session.user_number = req.body.user_number;
